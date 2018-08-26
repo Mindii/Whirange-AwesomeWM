@@ -1,3 +1,9 @@
+-------------------------------------------------------------------------------
+-- Whirange AwesomeWM - Not so Awesome, Awesome Dot
+-- Mindi @ Mindinet.org
+-- GNU General Public License v3.0
+-------------------------------------------------------------------------------
+
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
@@ -29,30 +35,34 @@ do
     end)
 end
 
+-------------------------------------------------------------------------------
 -- Mindi Variable's
-modkey = "Mod4"
+-------------------------------------------------------------------------------
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 Mindi = {}
 Mindi.Prog = {}
 Mindi.Command = {}
 Mindi.Bar = {}
 
--- Programs
+-- Main Var's
+Mindi.User =				'mindi' -- Note: case-sensitive
+Mindi.Mod = 				'Mod4'
+modkey = 					'Mod4' -- Remove this when changed
+
+-- Program's
+Mindi.Prog.Screenshot = 	'sh /home/' .. Mindi.User .. '/.config/awesome/sh/screenshot.sh'
 Mindi.Prog.Terminal = 		'urxvt'
 Mindi.Prog.Menu =			'dmenu'
 Mindi.Prog.FileManager = 	'thunar'
 Mindi.Prog.MusicPlayer = 	'mocp'
-Mindi.Prog.Screenshot = 	'sh /home/mindi/.config/awesome/screenshot.sh'
 Mindi.Prog.Editor =			'nano'
 
--- Commands
+-- Command's
 Mindi.Command.Editor =		Mindi.Prog.Terminal .. " -e " .. Mindi.Prog.Editor
+Mindi.Command.Autostart =	"sh /home/" .. Mindi.User .. "/.config/awesome/sh/autorun.sh"
 
 -- Bar
 Mindi.Bar.Clock = wibox.widget.textclock(" %R ")
-
--- Autorun
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
 -- Layout's
 awful.layout.layouts = {
@@ -255,15 +265,14 @@ globalkeys = gears.table.join(
               {description = "quit awesome", group = "awesome"}),
 
 	
-   -- ##################
-   -- Mindi Program's
-   -- ##################
+   -------------------------------------------------------------------------------
+   -- Mindi Keybinds
+   -------------------------------------------------------------------------------
 	awful.key({}, "Print",                function () os.execute(Mindi.Prog.Screenshot) end),
     awful.key({ modkey,           }, "e", function () awful.spawn(Mindi.Prog.FileManager) end),
     awful.key({ modkey,           }, "m", function () awful.spawn(Mindi.Prog.Terminal .. " -e " .. Mindi.Prog.MusicPlayer) end),
     awful.key({ modkey,           }, "d", function () awful.spawn(Mindi.Prog.Menu) end),
-   -- #----------------#
-
+   -------------------------------------------------------------------------------
 	
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
@@ -536,3 +545,6 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- Autorun
+awful.spawn.with_shell(Mindi.Command.Autostart)
