@@ -12,4 +12,3 @@ function run {
 }
 
 run nitrogen --restore &
-run dunst &
