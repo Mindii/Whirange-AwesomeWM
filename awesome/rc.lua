@@ -1,29 +1,19 @@
--- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
--- Widget and layout library
 local wibox = require("wibox")
--- Theme handling library
 local beautiful = require("beautiful")
--- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
--- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
                      title = "Oops, there were errors during startup!",
                      text = awesome.startup_errors })
 end
 
--- Handle runtime errors after startup
 do
     local in_error = false
     awesome.connect_signal("debug::error", function (err)
@@ -37,16 +27,12 @@ do
         in_error = false
     end)
 end
--- }}}
-
--- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-
 
 -- #################
 -- Mindi Variable's
 -- #################
+modkey = "Mod4"
+beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 Mindi = {}
 Mindi.Prog = {}
 Mindi.Command = {}
@@ -57,23 +43,14 @@ Mindi.Prog.Menu =			'dmenu'
 Mindi.Prog.FileManager = 	'thunar'
 Mindi.Prog.MusicPlayer = 	'mocp'
 Mindi.Prog.Screenshot = 	'sh /home/mindi/.config/awesome/screenshot.sh'
+Mindi.Prog.Editor =			'nano'
 -- #################
 -- Commands
+Mindi.Command.Editor =		Mindi.Prog.Terminal .. " -e " .. Mindi.Prog.Editor
 -- #################
-
--- This is used later as the default terminal and editor to run.
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = Mindi.Prog.Terminal .. " -e " .. editor
-
 -- Autorun Programs
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
-
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+-- #################
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -116,7 +93,7 @@ end
 myawesomemenu = {
    { "hotkeys", function() return false, hotkeys_popup.show_help end},
    { "manual", Mindi.Prog.Terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "edit config", Mindi.Command.Editor .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end}
 }
