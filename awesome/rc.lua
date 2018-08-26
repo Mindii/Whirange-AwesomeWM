@@ -8,6 +8,7 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys")
 
+-- Error Check
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
                      title = "Oops, there were errors during startup!",
@@ -28,15 +29,14 @@ do
     end)
 end
 
--- #################
 -- Mindi Variable's
--- #################
 modkey = "Mod4"
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 Mindi = {}
 Mindi.Prog = {}
 Mindi.Command = {}
--- #################
+Mindi.Bar = {}
+
 -- Programs
 Mindi.Prog.Terminal = 		'urxvt'
 Mindi.Prog.Menu =			'dmenu'
@@ -44,15 +44,17 @@ Mindi.Prog.FileManager = 	'thunar'
 Mindi.Prog.MusicPlayer = 	'mocp'
 Mindi.Prog.Screenshot = 	'sh /home/mindi/.config/awesome/screenshot.sh'
 Mindi.Prog.Editor =			'nano'
--- #################
+
 -- Commands
 Mindi.Command.Editor =		Mindi.Prog.Terminal .. " -e " .. Mindi.Prog.Editor
--- #################
--- Autorun Programs
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")
--- #################
 
--- Table of layouts to cover with awful.layout.inc, order matters.
+-- Bar
+Mindi.Bar.Clock = wibox.widget.textclock(" %R ")
+
+-- Autorun
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+
+-- Layout's
 awful.layout.layouts = {
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.floating,
@@ -71,9 +73,8 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
--- }}}
 
--- {{{ Helper functions
+-- Helper functions
 local function client_menu_toggle_fn()
     local instance = nil
 
@@ -86,36 +87,6 @@ local function client_menu_toggle_fn()
         end
     end
 end
--- }}}
-
--- {{{ Menu
--- Create a launcher widget and a main menu
-myawesomemenu = {
-   { "hotkeys", function() return false, hotkeys_popup.show_help end},
-   { "manual", Mindi.Prog.Terminal .. " -e man awesome" },
-   { "edit config", Mindi.Command.Editor .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end}
-}
-
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Terminal", Mindi.Prog.Terminal }
-                                  }
-                        })
-
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
-
--- Menubar configuration
-menubar.utils.terminal = Mindi.Prog.Terminal -- Set the terminal for applications that require it
--- }}}
-
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
--- {{{ Wibar
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -213,9 +184,8 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
             wibox.widget.systray(),
-            mytextclock,
+            Mindi.Bar.Clock,
             s.mylayoutbox,
         },
     }
@@ -285,14 +255,14 @@ globalkeys = gears.table.join(
               {description = "quit awesome", group = "awesome"}),
 
 	
-   -- #################
-   -- Mindi's Program's
-   -- #################
+   -- ##################
+   -- Mindi Program's
+   -- ##################
 	awful.key({}, "Print",                function () os.execute(Mindi.Prog.Screenshot) end),
     awful.key({ modkey,           }, "e", function () awful.spawn(Mindi.Prog.FileManager) end),
     awful.key({ modkey,           }, "m", function () awful.spawn(Mindi.Prog.Terminal .. " -e " .. Mindi.Prog.MusicPlayer) end),
     awful.key({ modkey,           }, "d", function () awful.spawn(Mindi.Prog.Menu) end),
-    -- ###############
+   -- #----------------#
 
 	
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
