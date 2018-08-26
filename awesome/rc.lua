@@ -60,6 +60,7 @@ Mindi.Command.Screenshot = 	'sh /home/' .. Mindi.User .. '/.config/awesome/sh/sc
 Mindi.Command.Autostart =	"/home/" .. Mindi.User .. "/.config/awesome/sh/autorun.sh"			-- Autostart Command
 
 -- Bar
+Mindi.Bar.Height = '20'
 Mindi.Bar.Clock = wibox.widget.textclock(" %R ")												-- Taskbar Clock
 
 -- Layout's
@@ -180,7 +181,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = Mindi.Bar.Height })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -191,7 +192,10 @@ awful.screen.connect_for_each_screen(function(s)
             s.mytaglist,
             s.mypromptbox,
         },
-        s.mytasklist, -- Middle widget
+        { -- Middle widget		
+		     layout = wibox.layout.fixed.horizontal,
+              --s.mytasklist,
+		},
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             Mindi.Bar.Clock,
@@ -455,7 +459,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
