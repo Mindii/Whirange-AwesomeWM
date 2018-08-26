@@ -1,5 +1,10 @@
 #!/bin/sh
-mscreen="/home/mindi/Pictures/Screenshots/$(date +%d.%m.%Y)"
+
+# --------------------------
+# Whirange Screenshot Script
+# --------------------------
+
+mscreen="/home/$USER/Pictures/Screenshots/$(date +%d.%m.%Y)"
 
 if [ ! -d "$mscreen/" ]; then
 	mkdir -p $mscreen/
