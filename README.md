@@ -1,5 +1,6 @@
 # What is this
 These are my config files for [Awesome](https://awesomewm.org/).
+![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/screenshot/screenshot_v01.png)
 
 # Progress
 - [x] Key bindings
@@ -28,6 +29,3 @@ These are my config files for [Awesome](https://awesomewm.org/).
 - `Mod + d` Open menu
 - `Mod + e` Open file manager
 - `Mod + m` Open music player
-
-# Screenshots
-![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/screenshot/screenshot_v01.png)
