@@ -235,17 +235,15 @@ globalkeys = gears.table.join(
     awful.key({ Mindi.Mod, "Shift"   }, "Right", 	function () awful.client.swap.global_bydirection("right") end),
     -- Restart / Quit
     awful.key({ Mindi.Mod, "Control" }, "r", 					awesome.restart),
-    awful.key({ Mindi.Mod, "Shift"   }, "e", 					awesome.quit),
+    awful.key({ Mindi.Mod, "Shift"   }, "e", 					awesome.quit)
 	-- Now Playing Test
 	-- awful.key({ Mindi.Mod,           }, "n", 		function () naughty.notify({ title = Mindi.NowPlaying.Artist, text = Mindi.NowPlaying.Song, timeout = 10, icon = Mindi.Path.Icon .. "test.png"}) end)
-
-
 )
 
 clientkeys = gears.table.join(
     awful.key({ Mindi.Mod,           }, "f", 		function (c) c.fullscreen = not c.fullscreen c:raise() end),
     awful.key({ Mindi.Mod, "Shift"   }, "q", 		function (c) c:kill() end),
-    awful.key({ Mindi.Mod, "Control" }, "space", 				awful.client.floating.toggle)
+    awful.key({ Mindi.Mod, "Shift" }, "space", 				awful.client.floating.toggle)
 )
 
 -- Bind all key numbers to tags.
