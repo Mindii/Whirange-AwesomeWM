@@ -30,3 +30,4 @@ These are my config files for [Awesome](https://awesomewm.org/).
 - `Mod + m` Open music player
 
 # Screenshots
+![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/screenshot/screenshot_v01.png)
