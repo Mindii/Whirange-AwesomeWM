@@ -25,6 +25,6 @@ These are my config files for [Awesome](https://awesomewm.org/).
 - `Mod + Enter` Open terminal
 - `Mod + d` Open menu
 - `Mod + e` Open file manager
-- `Mod + m` Open mocp
+- `Mod + m` Open music player
 
 # Screenshots
