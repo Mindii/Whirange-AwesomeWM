@@ -43,24 +43,20 @@ Mindi = {}
 Mindi.Prog = {}
 Mindi.Command = {}
 Mindi.Bar = {}
-
 -- Main Vars
-Mindi.User =                'mindi' -- Username for full path, case-sensitive
-Mindi.Mod =                 'Mod4' -- Mod key
-
+Mindi.User = 				'mindi'			-- Username for full path, case-sensitive
+Mindi.Mod = 				'Mod4'			-- Mod key
 -- Programs
-Mindi.Prog.Terminal =       'urxvt' -- Terminal command (Mod + Return)
-Mindi.Prog.Menu =           'dmenu' -- Laucher menu (Mod + D)
-Mindi.Prog.FileManager =    'thunar' -- Filemanager (Mod + E)
-Mindi.Prog.MusicPlayer =    'mocp' -- Music Player (Mod + M)
-
+Mindi.Prog.Terminal = 		'urxvt'			-- Terminal command (Mod + Return)
+Mindi.Prog.Menu = 			'dmenu'			-- Laucher menu (Mod + D)
+Mindi.Prog.FileManager = 	'thunar'		-- Filemanager (Mod + E)
+Mindi.Prog.MusicPlayer = 	'mocp'			-- Music Player (Mod + M)
 -- Commands
-Mindi.Command.Screenshot =  'sh /home/' .. Mindi.User .. '/.config/awesome/sh/screenshot.sh' -- Screenshot Command (Print + Click on window)
-Mindi.Command.Autostart =   '/home/' .. Mindi.User .. '/.config/awesome/sh/autorun.sh' -- Autostart Command
-
+Mindi.Command.Screenshot =  'sh /home/' .. Mindi.User .. '/.config/awesome/sh/screenshot.sh'	-- Screenshot Command (Print + Click on window)
+Mindi.Command.Autostart =   '/home/' .. Mindi.User .. '/.config/awesome/sh/autorun.sh'			-- Autostart Command
 -- Bar
-Mindi.Bar.Height = '20' -- Taskbar Height
-Mindi.Bar.Clock = wibox.widget.textclock(" %R ") -- Taskbar Clock
+Mindi.Bar.Height = '20'								-- Taskbar Height
+Mindi.Bar.Clock = wibox.widget.textclock(" %R ")	-- Taskbar Clock
 
 -- Layout's
 awful.layout.layouts = {
@@ -215,105 +211,26 @@ root.buttons(gears.table.join(
 -- Key Bindings
 -------------------------------------------------------------------------------
 globalkeys = gears.table.join(
-	awful.key({}, "Print",                       function () os.execute(Mindi.Command.Screenshot) end),
-    awful.key({ Mindi.Mod,           }, "e",     function () awful.spawn(Mindi.Prog.FileManager) end),
-    awful.key({ Mindi.Mod,           }, "m",     function () awful.spawn(Mindi.Prog.Terminal .. " -e " .. Mindi.Prog.MusicPlayer) end),
-    awful.key({ Mindi.Mod,           }, "d",     function () awful.spawn(Mindi.Prog.Menu) end),
-    -- Select with arrows
-    awful.key({ Mindi.Mod,           }, "Up",    function () awful.client.focus.global_bydirection("up") end),
-    awful.key({ Mindi.Mod,           }, "Down",  function () awful.client.focus.global_bydirection("down") end),
-    awful.key({ Mindi.Mod,           }, "Left",  function () awful.client.focus.global_bydirection("left") end),
-    awful.key({ Mindi.Mod,           }, "Right", function () awful.client.focus.global_bydirection("right") end),
+    awful.key({}, "Print", 							function () os.execute(Mindi.Command.Screenshot) end),
+    awful.key({ Mindi.Mod,           }, "r", 		function () awful.screen.focused().mypromptbox:run() end),
+    awful.key({ Mindi.Mod,           }, "Return", 	function () awful.spawn(Mindi.Prog.Terminal) end),
+    awful.key({ Mindi.Mod,           }, "e", 		function () awful.spawn(Mindi.Prog.FileManager) end),
+    awful.key({ Mindi.Mod,           }, "m", 		function () awful.spawn(Mindi.Prog.Terminal .. " -e " .. Mindi.Prog.MusicPlayer) end),
+    -- awful.key({ Mindi.Mod,           }, "d", 		function () awful.spawn(Mindi.Prog.Menu) end),
+    awful.key({ Mindi.Mod,           }, "d", 		function() menubar.show() end),
+	-- Select with arrows
+    awful.key({ Mindi.Mod,           }, "Up", 		function () awful.client.focus.global_bydirection("up") end),
+    awful.key({ Mindi.Mod,           }, "Down", 	function () awful.client.focus.global_bydirection("down") end),
+    awful.key({ Mindi.Mod,           }, "Left", 	function () awful.client.focus.global_bydirection("left") end),
+    awful.key({ Mindi.Mod,           }, "Right", 	function () awful.client.focus.global_bydirection("right") end),
     -- Move with arrows
-    awful.key({ Mindi.Mod, "Shift"   }, "Up",    function () awful.client.swap.global_bydirection("up") end),
-    awful.key({ Mindi.Mod, "Shift"   }, "Down",  function () awful.client.swap.global_bydirection("down") end),
-    awful.key({ Mindi.Mod, "Shift"   }, "Left",  function () awful.client.swap.global_bydirection("left") end),
-    awful.key({ Mindi.Mod, "Shift"   }, "Right", function () awful.client.swap.global_bydirection("right") end),
-
-    awful.key({ Mindi.Mod,           }, "j",
-        function ()
-            awful.client.focus.byidx( 1)
-        end,
-        {description = "focus next by index", group = "client"}
-    ),
-    awful.key({ Mindi.Mod,           }, "k",
-        function ()
-            awful.client.focus.byidx(-1)
-        end,
-        {description = "focus previous by index", group = "client"}
-    ),
-    awful.key({ Mindi.Mod,           }, "w", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
-
-    -- Layout manipulation
-    awful.key({ Mindi.Mod, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
-              {description = "swap with next client by index", group = "client"}),
-    awful.key({ Mindi.Mod, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
-              {description = "swap with previous client by index", group = "client"}),
-    awful.key({ Mindi.Mod, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
-              {description = "focus the next screen", group = "screen"}),
-    awful.key({ Mindi.Mod, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
-              {description = "focus the previous screen", group = "screen"}),
-    awful.key({ Mindi.Mod,           }, "u", awful.client.urgent.jumpto,
-              {description = "jump to urgent client", group = "client"}),
-    awful.key({ Mindi.Mod,           }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        {description = "go back", group = "client"}),
-
-    -- Standard program
-    awful.key({ Mindi.Mod,           }, "Return", function () awful.spawn(Mindi.Prog.Terminal) end),
-    awful.key({ Mindi.Mod, "Control" }, "r", awesome.restart),
-    awful.key({ Mindi.Mod, "Shift"   }, "e", awesome.quit),
-    awful.key({ Mindi.Mod,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
-              {description = "increase master width factor", group = "layout"}),
-    awful.key({ Mindi.Mod,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
-              {description = "decrease master width factor", group = "layout"}),
-    awful.key({ Mindi.Mod, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
-              {description = "increase the number of master clients", group = "layout"}),
-    awful.key({ Mindi.Mod, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
-              {description = "decrease the number of master clients", group = "layout"}),
-    awful.key({ Mindi.Mod, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
-              {description = "increase the number of columns", group = "layout"}),
-    awful.key({ Mindi.Mod, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
-              {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ Mindi.Mod,           }, "space", function () awful.layout.inc( 1)                end,
-              {description = "select next", group = "layout"}),
-    awful.key({ Mindi.Mod, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
-              {description = "select previous", group = "layout"}),
-
-    awful.key({ Mindi.Mod, "Control" }, "n",
-              function ()
-                  local c = awful.client.restore()
-                  -- Focus restored client
-                  if c then
-                      client.focus = c
-                      c:raise()
-                  end
-              end,
-              {description = "restore minimized", group = "client"}),
-
-    -- Prompt
-    awful.key({ Mindi.Mod },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
-
-    awful.key({ Mindi.Mod }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"}),
-    -- Menubar
-    awful.key({ Mindi.Mod }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+    awful.key({ Mindi.Mod, "Shift"   }, "Up", 		function () awful.client.swap.global_bydirection("up") end),
+    awful.key({ Mindi.Mod, "Shift"   }, "Down", 	function () awful.client.swap.global_bydirection("down") end),
+    awful.key({ Mindi.Mod, "Shift"   }, "Left", 	function () awful.client.swap.global_bydirection("left") end),
+    awful.key({ Mindi.Mod, "Shift"   }, "Right", 	function () awful.client.swap.global_bydirection("right") end),
+    -- Restart / Quit
+    awful.key({ Mindi.Mod, "Control" }, "r", 					awesome.restart),
+    awful.key({ Mindi.Mod, "Shift"   }, "e", 					awesome.quit)
 )
 
 clientkeys = gears.table.join(
