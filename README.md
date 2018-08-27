@@ -16,13 +16,15 @@ These are my config files for [Awesome](https://awesomewm.org/).
 `Mod` Win Key
 
 - `Print + Click` Screenshot
-- `Mod + Shift + e` Exit Awesome
-- `Mod + Ctrl + r` Restart Awesome
+- `Mod + Shift + e` Exit awesome
+- `Mod + Ctrl + r` Restart awesome
 - `Mod + f` Fullscreen
+- `Mod + Arrows` Change focused window
+- `Mod + Shift + Arrows` Move focused window
 
-- `Mod + Enter` Terminal
-- `Mod + d` Run Menu
-- `Mod + e` File Manager
-- `Mod + m` Music on console
+- `Mod + Enter` Open terminal
+- `Mod + d` Open run menu
+- `Mod + e` Open file manager
+- `Mod + m` Open mocp
 
 # Screenshots
