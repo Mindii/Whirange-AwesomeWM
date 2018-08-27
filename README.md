@@ -23,7 +23,7 @@ These are my config files for [Awesome](https://awesomewm.org/).
 - `Mod + Shift + Arrows` Move focused window
 
 - `Mod + Enter` Open terminal
-- `Mod + d` Open run menu
+- `Mod + d` Open menu
 - `Mod + e` Open file manager
 - `Mod + m` Open mocp
 
