@@ -21,6 +21,8 @@ These are my config files for [Awesome](https://awesomewm.org/).
 - `Mod + f` Fullscreen
 - `Mod + Arrows` Change focused window
 - `Mod + Shift + Arrows` Move focused window
+- `Mod + Shift + q` Kill focused window
+- `Mod + Shift + Space` Toggle float
 
 - `Mod + Enter` Open terminal
 - `Mod + d` Open menu
