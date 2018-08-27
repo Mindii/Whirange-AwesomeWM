@@ -38,7 +38,6 @@ end
 -------------------------------------------------------------------------------
 -- Variables
 -------------------------------------------------------------------------------
---beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.init(awful.util.getdir("config") .. "/themes/whirange/theme.lua")
 Mindi = {}
 Mindi.Prog = {}
@@ -46,22 +45,22 @@ Mindi.Command = {}
 Mindi.Bar = {}
 
 -- Main Vars
-Mindi.User =				'mindi' 															-- Username
-Mindi.Mod = 				'Mod4'																-- Mod key
+Mindi.User =                'mindi' -- Username for full path, case-sensitive
+Mindi.Mod =                 'Mod4' -- Mod key
 
 -- Programs
-Mindi.Prog.Terminal = 		'urxvt'																-- Terminal command (Mod + Return)
-Mindi.Prog.Menu =			'dmenu'																-- Laucher menu (Mod + D)
-Mindi.Prog.FileManager = 	'thunar'															-- Filemanager (Mod + E)
-Mindi.Prog.MusicPlayer = 	'mocp'																-- Music Player (Mod + M)
+Mindi.Prog.Terminal =       'urxvt' -- Terminal command (Mod + Return)
+Mindi.Prog.Menu =           'dmenu' -- Laucher menu (Mod + D)
+Mindi.Prog.FileManager =    'thunar' -- Filemanager (Mod + E)
+Mindi.Prog.MusicPlayer =    'mocp' -- Music Player (Mod + M)
 
 -- Commands
-Mindi.Command.Screenshot = 	'sh /home/' .. Mindi.User .. '/.config/awesome/sh/screenshot.sh'	-- Screenshot Command (Print + Click on window)
-Mindi.Command.Autostart =	"/home/" .. Mindi.User .. "/.config/awesome/sh/autorun.sh"			-- Autostart Command
+Mindi.Command.Screenshot =  'sh /home/' .. Mindi.User .. '/.config/awesome/sh/screenshot.sh' -- Screenshot Command (Print + Click on window)
+Mindi.Command.Autostart =   '/home/' .. Mindi.User .. '/.config/awesome/sh/autorun.sh' -- Autostart Command
 
 -- Bar
-Mindi.Bar.Height = '20'
-Mindi.Bar.Clock = wibox.widget.textclock(" %R ")												-- Taskbar Clock
+Mindi.Bar.Height = '20' -- Taskbar Height
+Mindi.Bar.Clock = wibox.widget.textclock(" %R ") -- Taskbar Clock
 
 -- Layout's
 awful.layout.layouts = {
@@ -202,29 +201,34 @@ awful.screen.connect_for_each_screen(function(s)
         },
     }
 end)
--------------------------------------------------------------------------------
 
--- Mouse bindings
+-------------------------------------------------------------------------------
+-- Mouse Bindings
+-------------------------------------------------------------------------------
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    --awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
 
-
 -------------------------------------------------------------------------------
--- Keybinds
+-- Key Bindings
 -------------------------------------------------------------------------------
 globalkeys = gears.table.join(
-	awful.key({}, "Print",                function () os.execute(Mindi.Command.Screenshot) end),
-    awful.key({ Mindi.Mod,           }, "e", function () awful.spawn(Mindi.Prog.FileManager) end),
-    awful.key({ Mindi.Mod,           }, "m", function () awful.spawn(Mindi.Prog.Terminal .. " -e " .. Mindi.Prog.MusicPlayer) end),
-    awful.key({ Mindi.Mod,           }, "d", function () awful.spawn(Mindi.Prog.Menu) end),
-
-    awful.key({ Mindi.Mod,           }, "Up", function () awful.client.focus.global_bydirection("up") end),
-    awful.key({ Mindi.Mod,           }, "Down", function () awful.client.focus.global_bydirection("down") end),
-    awful.key({ Mindi.Mod,           }, "Left", function () awful.client.focus.global_bydirection("left") end),
+	awful.key({}, "Print",                       function () os.execute(Mindi.Command.Screenshot) end),
+    awful.key({ Mindi.Mod,           }, "e",     function () awful.spawn(Mindi.Prog.FileManager) end),
+    awful.key({ Mindi.Mod,           }, "m",     function () awful.spawn(Mindi.Prog.Terminal .. " -e " .. Mindi.Prog.MusicPlayer) end),
+    awful.key({ Mindi.Mod,           }, "d",     function () awful.spawn(Mindi.Prog.Menu) end),
+    -- Select with arrows
+    awful.key({ Mindi.Mod,           }, "Up",    function () awful.client.focus.global_bydirection("up") end),
+    awful.key({ Mindi.Mod,           }, "Down",  function () awful.client.focus.global_bydirection("down") end),
+    awful.key({ Mindi.Mod,           }, "Left",  function () awful.client.focus.global_bydirection("left") end),
     awful.key({ Mindi.Mod,           }, "Right", function () awful.client.focus.global_bydirection("right") end),
+    -- Move with arrows
+    awful.key({ Mindi.Mod, "Shift"   }, "Up",    function () awful.client.swap.global_bydirection("up") end),
+    awful.key({ Mindi.Mod, "Shift"   }, "Down",  function () awful.client.swap.global_bydirection("down") end),
+    awful.key({ Mindi.Mod, "Shift"   }, "Left",  function () awful.client.swap.global_bydirection("left") end),
+    awful.key({ Mindi.Mod, "Shift"   }, "Right", function () awful.client.swap.global_bydirection("right") end),
 
     awful.key({ Mindi.Mod,           }, "j",
         function ()
