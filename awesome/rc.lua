@@ -42,21 +42,27 @@ beautiful.init(awful.util.getdir("config") .. "/themes/whirange/theme.lua")
 Mindi = {}
 Mindi.Prog = {}
 Mindi.Command = {}
+Mindi.Path = {}
 Mindi.Bar = {}
 -- Main Vars
-Mindi.User = 				'mindi'			-- Username for full path, case-sensitive
 Mindi.Mod = 				'Mod4'			-- Mod key
 -- Programs
 Mindi.Prog.Terminal = 		'urxvt'			-- Terminal command (Mod + Return)
-Mindi.Prog.Menu = 			'dmenu'			-- Laucher menu (Mod + D)
 Mindi.Prog.FileManager = 	'thunar'		-- Filemanager (Mod + E)
 Mindi.Prog.MusicPlayer = 	'mocp'			-- Music Player (Mod + M)
 -- Commands
-Mindi.Command.Screenshot =  'sh /home/' .. Mindi.User .. '/.config/awesome/sh/screenshot.sh'	-- Screenshot Command (Print + Click on window)
-Mindi.Command.Autostart =   '/home/' .. Mindi.User .. '/.config/awesome/sh/autorun.sh'			-- Autostart Command
+Mindi.Command.Screenshot =  awful.util.getdir("config") .. 'script/screenshot.sh'		-- Screenshot Command (Print + Click on window)
+Mindi.Command.Autostart =   awful.util.getdir("config") .. 'script/autorun.sh'			-- Autostart Command
+-- Paths
+Mindi.Path.Icon =        awful.util.getdir("config") .. "/themes/whirange/icon/"
 -- Bar
 Mindi.Bar.Height = '20'								-- Taskbar Height
 Mindi.Bar.Clock = wibox.widget.textclock(" %R ")	-- Taskbar Clock
+
+-- Now Playing
+--Mindi.NowPlaying = {}
+--awful.spawn.easy_async_with_shell("mocp -Q %artist", function(stdout) Mindi.NowPlaying.Artist = stdout end) 
+--awful.spawn.easy_async_with_shell("mocp -Q %song", function(stdout) Mindi.NowPlaying.Song = stdout end)
 
 -- Layout's
 awful.layout.layouts = {
@@ -211,14 +217,13 @@ root.buttons(gears.table.join(
 -- Key Bindings
 -------------------------------------------------------------------------------
 globalkeys = gears.table.join(
-    awful.key({}, "Print", 							function () os.execute(Mindi.Command.Screenshot) end),
+    awful.key({                      }, "Print", 	function () os.execute(Mindi.Command.Screenshot) end),
     awful.key({ Mindi.Mod,           }, "r", 		function () awful.screen.focused().mypromptbox:run() end),
     awful.key({ Mindi.Mod,           }, "Return", 	function () awful.spawn(Mindi.Prog.Terminal) end),
     awful.key({ Mindi.Mod,           }, "e", 		function () awful.spawn(Mindi.Prog.FileManager) end),
     awful.key({ Mindi.Mod,           }, "m", 		function () awful.spawn(Mindi.Prog.Terminal .. " -e " .. Mindi.Prog.MusicPlayer) end),
-    -- awful.key({ Mindi.Mod,           }, "d", 		function () awful.spawn(Mindi.Prog.Menu) end),
     awful.key({ Mindi.Mod,           }, "d", 		function() menubar.show() end),
-	-- Select with arrows
+    -- Select with arrows
     awful.key({ Mindi.Mod,           }, "Up", 		function () awful.client.focus.global_bydirection("up") end),
     awful.key({ Mindi.Mod,           }, "Down", 	function () awful.client.focus.global_bydirection("down") end),
     awful.key({ Mindi.Mod,           }, "Left", 	function () awful.client.focus.global_bydirection("left") end),
@@ -230,56 +235,20 @@ globalkeys = gears.table.join(
     awful.key({ Mindi.Mod, "Shift"   }, "Right", 	function () awful.client.swap.global_bydirection("right") end),
     -- Restart / Quit
     awful.key({ Mindi.Mod, "Control" }, "r", 					awesome.restart),
-    awful.key({ Mindi.Mod, "Shift"   }, "e", 					awesome.quit)
+    awful.key({ Mindi.Mod, "Shift"   }, "e", 					awesome.quit),
+	-- Now Playing Test
+	-- awful.key({ Mindi.Mod,           }, "n", 		function () naughty.notify({ title = Mindi.NowPlaying.Artist, text = Mindi.NowPlaying.Song, timeout = 10, icon = Mindi.Path.Icon .. "test.png"}) end)
+
+
 )
 
 clientkeys = gears.table.join(
-    awful.key({ Mindi.Mod,           }, "f",
-        function (c)
-            c.fullscreen = not c.fullscreen
-            c:raise()
-        end,
-        {description = "toggle fullscreen", group = "client"}),
-    awful.key({ Mindi.Mod, "Shift"   }, "q",      function (c) c:kill()                         end,
-              {description = "close", group = "client"}),
-    awful.key({ Mindi.Mod, "Control" }, "space",  awful.client.floating.toggle                     ,
-              {description = "toggle floating", group = "client"}),
-    awful.key({ Mindi.Mod, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
-              {description = "move to master", group = "client"}),
-    awful.key({ Mindi.Mod,           }, "o",      function (c) c:move_to_screen()               end,
-              {description = "move to screen", group = "client"}),
-    awful.key({ Mindi.Mod,           }, "t",      function (c) c.ontop = not c.ontop            end,
-              {description = "toggle keep on top", group = "client"}),
-    awful.key({ Mindi.Mod,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end ,
-        {description = "minimize", group = "client"}),
-    awful.key({ Mindi.Mod,           }, "m",
-        function (c)
-            c.maximized = not c.maximized
-            c:raise()
-        end ,
-        {description = "(un)maximize", group = "client"}),
-    awful.key({ Mindi.Mod, "Control" }, "m",
-        function (c)
-            c.maximized_vertical = not c.maximized_vertical
-            c:raise()
-        end ,
-        {description = "(un)maximize vertically", group = "client"}),
-    awful.key({ Mindi.Mod, "Shift"   }, "m",
-        function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c:raise()
-        end ,
-        {description = "(un)maximize horizontally", group = "client"})
+    awful.key({ Mindi.Mod,           }, "f", 		function (c) c.fullscreen = not c.fullscreen c:raise() end),
+    awful.key({ Mindi.Mod, "Shift"   }, "q", 		function (c) c:kill() end),
+    awful.key({ Mindi.Mod, "Control" }, "space", 				awful.client.floating.toggle)
 )
 
 -- Bind all key numbers to tags.
--- Be careful: we use keycodes to make it work on any keyboard layout.
--- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
@@ -334,12 +303,9 @@ clientbuttons = gears.table.join(
 
 -- Set keys
 root.keys(globalkeys)
--- }}}
 
--- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
-    -- All clients will match this rule.
     { rule = { },
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
@@ -377,73 +343,15 @@ awful.rules.rules = {
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       }, properties = { floating = true }},
-
-    -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
-    },
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
 }
--- }}}
 
--- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
-    -- Set the windows at the slave,
-    -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
-
     if awesome.startup and
       not c.size_hints.user_position
       and not c.size_hints.program_position then
-        -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
-end)
-
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-    -- buttons for the titlebar
-    local buttons = gears.table.join(
-        awful.button({ }, 1, function()
-            client.focus = c
-            c:raise()
-            awful.mouse.client.move(c)
-        end),
-        awful.button({ }, 3, function()
-            client.focus = c
-            c:raise()
-            awful.mouse.client.resize(c)
-        end)
-    )
-
-    awful.titlebar(c) : setup {
-        { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-    }
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
