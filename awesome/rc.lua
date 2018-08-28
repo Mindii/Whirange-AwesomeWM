@@ -46,19 +46,21 @@ Mindi.Command =	{}
 Mindi.Path = {}
 Mindi.Bar =	{}
 -- Main	Vars
-Mindi.Mod =					'Mod4'			--	Mod	key
+Mindi.Mod =					'Mod4' -- Mod key
+Mindi.Tags1 = 				{"Main", "Dev", "Dev 2", "Browser", "Gaming"}
+Mindi.Tags2 = 				{"Video", "Browser", "Chat"}
 -- Programs
-Mindi.Prog.Terminal	= 		'urxvt'			-- Terminal command (Mod + Return)
-Mindi.Prog.FileManager = 	'thunar'		-- Filemanager (Mod	+ E)
-Mindi.Prog.MusicPlayer = 	'mocp'			-- Music	Player (Mod	+ M)
+Mindi.Prog.Terminal	= 		'urxvt'	-- Terminal command (Mod + Return)
+Mindi.Prog.FileManager = 	'thunar' -- Filemanager (Mod	+ E)
+Mindi.Prog.MusicPlayer = 	'mocp' -- Music	Player (Mod	+ M)
 -- Commands
 Mindi.Command.Screenshot =	awful.util.getdir("config") .. 'script/screenshot.sh'		-- Screenshot	Command	(Print + Click on window)
 Mindi.Command.Autostart	=	awful.util.getdir("config") .. 'script/autorun.sh'			-- Autostart	Command
 -- Paths
-Mindi.Path.Icon	=		 awful.util.getdir("config")	.. "/themes/whirange/icon/"
+Mindi.Path.Icon	=		 	awful.util.getdir("config")	.. "/themes/whirange/icon/"
 -- Bar
-Mindi.Bar.Height = '16'								-- Taskbar Height
-Mindi.Bar.Clock	= wibox.widget.textclock(" %R ")	--	Taskbar	Clock
+Mindi.Bar.Height = 			'16'								-- Taskbar Height
+Mindi.Bar.Clock	= 			wibox.widget.textclock(" %R ")	--	Taskbar	Clock
 
 -------------------------------------------------------------------------------
 -- Layout's
@@ -147,7 +149,6 @@ local function set_wallpaper(s)
 	--	Wallpaper
 	if	beautiful.wallpaper	then
 		local	wallpaper =	beautiful.wallpaper
-		-- If	wallpaper is a function, call it with the screen
 		if type(wallpaper) ==	"function" then
 			wallpaper = wallpaper(s)
 		end
@@ -159,14 +160,13 @@ end
 screen.connect_signal("property::geometry",	set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
-	--	Wallpaper
 	set_wallpaper(s)
 
 	tags = {}
 	if s == screen.primary then
-		awful.tag.new({ "Main", "Browser", "Dev", "Dev2", "Gaming", "Chat" }, s, awful.layout.layouts[1])
+		awful.tag.new(Mindi.Tags1, s, awful.layout.layouts[1])
 	else
-		awful.tag({ "Video", "Browser" }, s, awful.layout.layouts[1])
+		awful.tag(Mindi.Tags2, s, awful.layout.layouts[1])
 	end
 		
 	--	Create a promptbox for each	screen
@@ -225,7 +225,6 @@ globalkeys = gears.table.join(
 	awful.key({ Mindi.Mod,			  }, "r",			function() awful.screen.focused().mypromptbox:run() end),
 	awful.key({ Mindi.Mod,			  }, "Return", 		function() awful.spawn(Mindi.Prog.Terminal) end),
 	awful.key({ Mindi.Mod,			  }, "e",			function() awful.spawn(Mindi.Prog.FileManager) end),
-	awful.key({ Mindi.Mod,			  }, "m",			function() awful.spawn(Mindi.Prog.Terminal .. " -e "	.. Mindi.Prog.MusicPlayer) end),
 	awful.key({ Mindi.Mod,			  }, "d",			function() menubar.show()	end),
 	--	Select with	arrows
 	awful.key({ Mindi.Mod,			  }, "Up", 			function() awful.client.focus.global_bydirection("up") end),
@@ -239,7 +238,15 @@ globalkeys = gears.table.join(
 	awful.key({ Mindi.Mod,	"Shift"	  }, "Right", 		function() awful.client.swap.global_bydirection("right") end),
 	--	Restart	/ Quit
 	awful.key({ Mindi.Mod,	"Control" }, "r", 			awesome.restart),
-	awful.key({ Mindi.Mod,	"Shift"	  }, "e", 			awesome.quit)
+	awful.key({ Mindi.Mod,	"Shift"	  }, "e", 			awesome.quit),
+	-- Media Keys
+	awful.key({ Mindi.Mod,}, "m",						function() awful.spawn(Mindi.Prog.Terminal .. " -e " .. Mindi.Prog.MusicPlayer) end),
+	awful.key({}, "XF86AudioLowerVolume",				function() awful.spawn('amixer set Master 3%-') end),
+	awful.key({}, "XF86AudioRaiseVolume",				function() awful.spawn('amixer set Master 3%+') end),
+	awful.key({}, "XF86AudioPlay",						function() awful.spawn('mocp --play') end),
+	awful.key({}, "XF86AudioStop",						function() awful.spawn('mocp --stop') end),
+	awful.key({}, "XF86AudioNext",						function() awful.spawn('mocp --next') end),
+	awful.key({}, "XF86AudioPrev",						function() awful.spawn('mocp --previous') end)	
 )
 
 clientkeys = gears.table.join(
