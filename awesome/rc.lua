@@ -162,10 +162,13 @@ awful.screen.connect_for_each_screen(function(s)
 	--	Wallpaper
 	set_wallpaper(s)
 
-	--	Each screen	has	its	own	tag	table.
-	--awful.tag({ "1",	"2", "3", "4", "5",	"6", "7", "8", "9" }, s, awful.layout.layouts[1])
-	awful.tag({ "Main", "Browser",	"Dev", "Gaming", "Chat"	}, s, awful.layout.layouts[1])
-
+	tags = {}
+	if s == screen.primary then
+		awful.tag.new({ "Main", "Browser", "Dev", "Dev2", "Gaming", "Chat" }, s, awful.layout.layouts[1])
+	else
+		awful.tag({ "Video", "Browser" }, s, awful.layout.layouts[1])
+	end
+		
 	--	Create a promptbox for each	screen
 	s.mypromptbox = awful.widget.prompt()
 	--	Create an imagebox widget which	will contain an	icon indicating	which layout we're using.
@@ -218,33 +221,33 @@ root.buttons(gears.table.join(
 -- Key Bindings
 -------------------------------------------------------------------------------
 globalkeys = gears.table.join(
-	awful.key({					  }, "Print", 	function ()	os.execute(Mindi.Command.Screenshot) end),
-	awful.key({ Mindi.Mod,			  }, "r",			function () awful.screen.focused().mypromptbox:run() end),
-	awful.key({ Mindi.Mod,			  }, "Return", 	function () awful.spawn(Mindi.Prog.Terminal) end),
-	awful.key({ Mindi.Mod,			  }, "e",			function () awful.spawn(Mindi.Prog.FileManager) end),
-	awful.key({ Mindi.Mod,			  }, "m",			function () awful.spawn(Mindi.Prog.Terminal .. " -e "	.. Mindi.Prog.MusicPlayer) end),
+	awful.key({						  }, "Print", 		function() os.execute(Mindi.Command.Screenshot) end),
+	awful.key({ Mindi.Mod,			  }, "r",			function() awful.screen.focused().mypromptbox:run() end),
+	awful.key({ Mindi.Mod,			  }, "Return", 		function() awful.spawn(Mindi.Prog.Terminal) end),
+	awful.key({ Mindi.Mod,			  }, "e",			function() awful.spawn(Mindi.Prog.FileManager) end),
+	awful.key({ Mindi.Mod,			  }, "m",			function() awful.spawn(Mindi.Prog.Terminal .. " -e "	.. Mindi.Prog.MusicPlayer) end),
 	awful.key({ Mindi.Mod,			  }, "d",			function() menubar.show()	end),
 	--	Select with	arrows
-	awful.key({ Mindi.Mod,			  }, "Up", 		function	() awful.client.focus.global_bydirection("up") end),
-	awful.key({ Mindi.Mod,			  }, "Down", 	function ()	awful.client.focus.global_bydirection("down") end),
-	awful.key({ Mindi.Mod,			  }, "Left", 	function ()	awful.client.focus.global_bydirection("left") end),
-	awful.key({ Mindi.Mod,			  }, "Right",		function () awful.client.focus.global_bydirection("right")	end),
+	awful.key({ Mindi.Mod,			  }, "Up", 			function() awful.client.focus.global_bydirection("up") end),
+	awful.key({ Mindi.Mod,			  }, "Down", 		function() awful.client.focus.global_bydirection("down") end),
+	awful.key({ Mindi.Mod,			  }, "Left", 		function() awful.client.focus.global_bydirection("left") end),
+	awful.key({ Mindi.Mod,			  }, "Right", 		function() awful.client.focus.global_bydirection("right")	end),
 	--	Move with arrows
-	awful.key({ Mindi.Mod,	"Shift"	  }, "Up", 		function () awful.client.swap.global_bydirection("up")	end),
-	awful.key({ Mindi.Mod,	"Shift"	  }, "Down", 	function () awful.client.swap.global_bydirection("down") end),
-	awful.key({ Mindi.Mod,	"Shift"	  }, "Left", 	function () awful.client.swap.global_bydirection("left") end),
-	awful.key({ Mindi.Mod,	"Shift"	  }, "Right", 	function	() awful.client.swap.global_bydirection("right") end),
+	awful.key({ Mindi.Mod,	"Shift"	  }, "Up", 			function() awful.client.swap.global_bydirection("up")	end),
+	awful.key({ Mindi.Mod,	"Shift"	  }, "Down", 		function() awful.client.swap.global_bydirection("down") end),
+	awful.key({ Mindi.Mod,	"Shift"	  }, "Left", 		function() awful.client.swap.global_bydirection("left") end),
+	awful.key({ Mindi.Mod,	"Shift"	  }, "Right", 		function() awful.client.swap.global_bydirection("right") end),
 	--	Restart	/ Quit
-	awful.key({ Mindi.Mod,	"Control" }, "r", 					awesome.restart),
-	awful.key({ Mindi.Mod,	"Shift"	  }, "e", 					awesome.quit)
+	awful.key({ Mindi.Mod,	"Control" }, "r", 			awesome.restart),
+	awful.key({ Mindi.Mod,	"Shift"	  }, "e", 			awesome.quit)
 )
 
 clientkeys = gears.table.join(
-	awful.key({ Mindi.Mod,			  }, "f",			function (c) c.fullscreen	= not c.fullscreen c:raise() end),
-	awful.key({ Mindi.Mod,	"Shift"	  }, "q", 		function (c) c:kill() end),
-	awful.key({ Mindi.Mod,	"Shift"	}, "space",					awful.client.floating.toggle),
-	awful.key({	Mindi.Mod,			 }, "Tab",		function () for c	in awful.client.iterate(function (x) return	true end) do client.focus	= c client.focus:raise() end end),
-	awful.key({ Mindi.Mod,	"Shift"	  }, "Tab",		function () awful.client.focus.byidx(1) if client.focus then client.focus:raise() end end)	 
+	awful.key({ Mindi.Mod,			}, "f", 			function (c) c.fullscreen	= not c.fullscreen c:raise() end),
+	awful.key({ Mindi.Mod,	"Shift"	}, "q", 			function (c) c:kill() end),
+	awful.key({ Mindi.Mod,	"Shift"	}, "space",			awful.client.floating.toggle),
+	awful.key({	Mindi.Mod,			}, "Tab", 			function () for c	in awful.client.iterate(function (x) return	true end) do client.focus	= c client.focus:raise() end end),
+	awful.key({ Mindi.Mod,	"Shift"	}, "Tab", 			function () awful.client.focus.byidx(1) if client.focus then client.focus:raise() end end)	 
 )
 
 -- Bind	all	key	numbers	to tags.
