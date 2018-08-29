@@ -16,6 +16,7 @@ These are my config files for [Awesome](https://awesomewm.org/).
 - [ ] Notifications
   - [x] MOC - Now Playing
 - [ ] Conky
+- [ ] Custom Layouts for Awesome
 - [ ] ..?
 
 # Key bindings
