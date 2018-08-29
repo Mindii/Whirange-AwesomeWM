@@ -14,7 +14,7 @@ These are my config files for [Awesome](https://awesomewm.org/).
   - [ ] Widgets
   - [ ] Fonts
 - [ ] Notifications
-  - [x] Music on Console - Nowplaying (WIP)
+  - [x] MOC - Now Playing
 - [ ] Conky
 - [ ] ..?
 
