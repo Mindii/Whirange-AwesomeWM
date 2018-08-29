@@ -1,22 +1,26 @@
 #!/bin/bash
-export DISPLAY=:0.0
-export XAUTHORITY=/home/mindi/.Xauthority
+notify_icon_size="80"
+notify_timeout="6"
 
 sleep 0.5
 info="$(mocp -i)"
-artist=$(echo "${info}"|grep Artist:|cut -d ' ' -f2-)
+artist="$(echo "${info}"|grep Artist:|cut -d ' ' -f2-)"
 song="$(echo "${info}"|grep SongTitle:|cut -d ' ' -f2-)"
-#file="$(mocp -Q %file)"
 file="$(echo "${info}"|grep File:|rev|cut -d '/' -f1|rev)"
-cover="/$(echo "${info}"|grep File:|rev|cut -d '/' -f2-|rev|cut -d '/' -f2-)/cover.jpg"
+folder="/$(echo "${info}"|grep File:|rev|cut -d '/' -f2-|rev|cut -d '/' -f2-)"
+cover_exists="$(find "${folder}/" -iname "cover.*")"
 
-# add and song
-if [ "$song" != "" ] || [ "$artist" != "" ]; then
-	if [ -e "$cover" ]; then
-		echo "require('naughty').notify({ title = '${artist}', text='${song}', icon='/${cover}', icon_size='80'})" | awesome-client
-	else
-		echo "require('naughty').notify({ title = '${artist}', text='${song}'})" | awesome-client
+# Set Cover
+if [ ! -e "${cover_exists}" ]; then
+	cover_exists="$(find "${folder}/" -iname "folder.*")"
+	if [ ! -e "${cover_exists}" ]; then
+		cover_exists=""${HOME}"/.config/awesome/themes/whirange/icon/test.png"
 	fi
+fi
+
+# If there is no tag's and cover then show only file name
+if [ "$song" != "" ] && [ "$artist" != "" ] && [ -e "${cover_exists}" ]; then
+		echo "require('naughty').notify({ title='${artist}', text='${song}', icon='${cover_exists}', icon_size='${notify_icon_size}', timeout=${notify_timeout}})" | awesome-client
 else
-	echo "require('naughty').notify({ title = 'Playing', text='${file}'})" | awesome-client
+	echo "require('naughty').notify({ title = 'Playing', text='${file}', timeout=${notify_timeout}})" | awesome-client
 fi
