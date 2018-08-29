@@ -18,9 +18,11 @@ if [ ! -e "${cover_exists}" ]; then
 	fi
 fi
 
+#echo 'require("naughty").notify({ title = "Playing", text="'${file}'"})' | awesome-client
+
 # If there is no tag's and cover then show only file name
-if [ "$song" != "" ] && [ "$artist" != "" ] && [ -e "${cover_exists}" ]; then
-		echo "require('naughty').notify({ title='${artist}', text='${song}', icon='${cover_exists}', icon_size='${notify_icon_size}', timeout=${notify_timeout}})" | awesome-client
+if [ "$song" != "" ] && [ "$artist" != "" ]; then
+	echo 'require("naughty").notify({ title="'${artist}'", text="'${song}'", icon="'${cover_exists}'", icon_size='${notify_icon_size}', timeout='${notify_timeout}'})' | awesome-client
 else
-	echo "require('naughty').notify({ title = 'Playing', text='${file}', timeout=${notify_timeout}})" | awesome-client
+	echo 'require("naughty").notify({ title = "Playing", text="'${file}'", icon="'${cover_exists}'", icon_size='${notify_icon_size}', timeout='${notify_timeout}'})' | awesome-client
 fi
