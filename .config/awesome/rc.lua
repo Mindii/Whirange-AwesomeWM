@@ -47,15 +47,15 @@ Mindi.Path = {}
 Mindi.Bar =	{}
 -- Main	Vars
 Mindi.Mod =					'Mod4' -- Mod key
-Mindi.Tags1 = 				{"Main", "Dev", "Dev 2", "Browser", "Gaming"}
-Mindi.Tags2 = 				{"Video", "Browser", "Chat"}
+Mindi.Tags1 = 				{"[1] Main", "[2] Dev", "[3] Dev II", "[4] Browser", "[5] Gaming", "[6] Chat", "[7] Email"}
+Mindi.Tags2 = 				{"[1] Video", "[2] Browser", "[3] Chat"}
 -- Programs
 Mindi.Prog.Terminal	= 		'urxvt'	-- Terminal command (Mod + Return)
 Mindi.Prog.FileManager = 	'thunar' -- Filemanager (Mod	+ E)
 Mindi.Prog.MusicPlayer = 	'mocp' -- Music	Player (Mod	+ M)
 -- Commands
-Mindi.Command.Screenshot =	awful.util.getdir("config") .. 'script/screenshot.sh'		-- Screenshot	Command	(Print + Click on window)
-Mindi.Command.Autostart	=	awful.util.getdir("config") .. 'script/autorun.sh'			-- Autostart	Command
+Mindi.Command.Screenshot =	awful.util.getdir("config") .. 'scripts/screenshot.sh'		-- Screenshot	Command	(Print + Click on window)
+Mindi.Command.Autostart	=	awful.util.getdir("config") .. 'scripts/autorun.sh'			-- Autostart	Command
 -- Paths
 Mindi.Path.Icon	=		 	awful.util.getdir("config")	.. "/themes/whirange/icon/"
 -- Bar
