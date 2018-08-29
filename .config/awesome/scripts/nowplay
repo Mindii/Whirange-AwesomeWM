@@ -1,28 +1,32 @@
 #!/bin/bash
 notify_icon_size="80"
-notify_timeout="6"
+notify_timeout="10"
 
-sleep 0.5
+sleep 0.7
 info="$(mocp -i)"
-artist="$(echo "${info}"|grep Artist:|cut -d ' ' -f2-)"
-song="$(echo "${info}"|grep SongTitle:|cut -d ' ' -f2-)"
-file="$(echo "${info}"|grep File:|rev|cut -d '/' -f1|rev)"
-folder="/$(echo "${info}"|grep File:|rev|cut -d '/' -f2-|rev|cut -d '/' -f2-)"
-cover_exists="$(find "${folder}/" -iname "cover.*")"
+state="$(echo "${info}"|grep State:|cut -d ' ' -f2-)"
 
-# Set Cover
-if [ ! -e "${cover_exists}" ]; then
-	cover_exists="$(find "${folder}/" -iname "folder.*")"
+# Run stuff only if player plays something
+if [ "${state}" == "PLAY" ]; then
+	# Data Variables
+	artist="$(echo "${info}"|grep Artist:|cut -d ' ' -f2-)"
+	song="$(echo "${info}"|grep SongTitle:|cut -d ' ' -f2-)"
+	file="$(echo "${info}"|grep File:|rev|cut -d '/' -f1|rev)"
+	folder="/$(echo "${info}"|grep File:|rev|cut -d '/' -f2-|rev|cut -d '/' -f2-)"
+	cover_exists="$(find "${folder}/" -iname "cover.*")"
+
+	# Set Cover
 	if [ ! -e "${cover_exists}" ]; then
+		cover_exists="$(find "${folder}/" -iname "folder.*")"
+		if [ ! -e "${cover_exists}" ]; then
 		cover_exists=""${HOME}"/.config/awesome/themes/whirange/icon/test.png"
+		fi
 	fi
-fi
 
-#echo 'require("naughty").notify({ title = "Playing", text="'${file}'"})' | awesome-client
-
-# If there is no tag's and cover then show only file name
-if [ "$song" != "" ] && [ "$artist" != "" ]; then
-	echo 'require("naughty").notify({ title="'${artist}'", text="'${song}'", icon="'${cover_exists}'", icon_size='${notify_icon_size}', timeout='${notify_timeout}'})' | awesome-client
-else
-	echo 'require("naughty").notify({ title = "Playing", text="'${file}'", icon="'${cover_exists}'", icon_size='${notify_icon_size}', timeout='${notify_timeout}'})' | awesome-client
+	# Filename fallback
+	if [ "$song" != "" ] && [ "$artist" != "" ]; then
+		echo 'require("naughty").notify({ title="'${artist}'", text="'${song}'", icon="'${cover_exists}'", icon_size='${notify_icon_size}', timeout='${notify_timeout}'})' | awesome-client
+	else
+		echo 'require("naughty").notify({ title = "Playing", text="'${file}'", icon="'${cover_exists}'", icon_size='${notify_icon_size}', timeout='${notify_timeout}'})' | awesome-client
+	fi
 fi
