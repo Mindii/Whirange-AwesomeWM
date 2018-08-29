@@ -35,7 +35,7 @@ These are my config files for [Awesome](https://awesomewm.org/).
 - `Mod + Shift + q` Kill focused window
 - `Mod + Shift + Space` Toggle float
 
-- `Mod + Enter` Open terminal
-- `Mod + d` Open menu
-- `Mod + e` Open file manager
-- `Mod + m` Open music player
+- `Mod + Enter` Open Terminal
+- `Mod + d` Open Launcher
+- `Mod + e` Open File manager
+- `Mod + m` Open MOC
