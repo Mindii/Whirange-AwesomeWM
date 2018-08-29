@@ -5,6 +5,7 @@ These are my config files for [Awesome](https://awesomewm.org/).
 # Progress
 - [x] Key bindings
     - [x] Basics
+    - [x] Media Keys
 - [ ] Scripts
     - [x] Now Playing for MOC notifications
     - [ ] Now Playing paste
