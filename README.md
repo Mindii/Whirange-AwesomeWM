@@ -3,9 +3,10 @@ These are my config files for [Awesome](https://awesomewm.org/).
 ![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/screenshot/screenshot_v01.png)
 
 # Progress
-- [x] Key bindings
+- [ ] Key bindings
     - [x] Basics
     - [x] Media Keys
+    - [ ] Upcomming script binds
 - [ ] Scripts
     - [x] Now Playing for MOC notifications
     - [ ] Now Playing paste
