@@ -1,0 +1,254 @@
+# Show file titles, instead of file names
+#ReadTags = yes
+
+# Music Dir
+MusicDir = /home/mindi/Music
+
+# Start in the music directory by default
+StartInMusicDir = yes
+
+# Ignore CRC errors
+#MP3IgnoreCRCErrors = yes
+
+# Hide file name extensions?
+HideFileExtension = yes
+
+# Show file format in menu?
+ShowFormat = no
+
+# Show file time in menu?  Possible values: 'yes', 'no' and 'IfAvailable'
+ShowTime = Yes
+
+# Show time played as a percentage in the time progress bar.
+ShowTimePercent = yes
+
+# Theme
+Theme = /home/mindi/.moc/whirange
+
+# The theme used when running on an xterm.
+#
+# Example:    XTermTheme = transparent-background
+#
+#XTermTheme =
+
+# Should MOC try to autoload the default lyrics file for an audio?  (The
+# default lyrics file is a text file with the same file name as the audio
+# file name with any trailing "extension" removed.)
+#AutoLoadLyrics = yes
+
+# MOC directory (where pid file, socket and state files are stored).
+# You can use ~ at the beginning.
+#MOCDir = ~/.moc
+
+# Assume this encoding for ID3 version 1/1.1 tags (MP3 files).  Unlike
+# ID3v2, UTF-8 is not used here and MOC can't guess how tags are encoded.
+# Another solution is using librcc (see the next option).  This option is
+# ignored if UseRCC is set to 'yes'.
+#ID3v1TagsEncoding = WINDOWS-1250
+
+# Use librcc to fix ID3 version 1/1.1 tags encoding.
+#UseRCC = yes
+
+
+# When using more than one client (interface) at a time, do they share
+# the playlist?
+SyncPlaylist = yes
+
+# Use ASCII rather than graphic characters for drawing lines.  This
+# helps on some terminals.
+#ASCIILines = no
+
+# How fast to seek (in number of seconds per keystroke).  The first
+# option is for normal seek and the second for silent seek.
+#SeekTime = 1
+#SilentSeekTime = 5
+
+# By default, even if the sound card reports that it can output 24bit samples
+# MOC converts 24bit PCM to 16bit.  Setting this option to 'yes' allows MOC
+# to use 24bit output.  (The MP3 decoder, for example, uses this format.)
+# This is disabled by default because there were reports that it prevents
+# MP3 files from playing on some soundcards.
+#Allow24bitOutput = no
+
+# Use realtime priority for output buffer thread.  This will prevent gaps
+# while playing even with heavy load.  The user who runs MOC must have
+# permissions to set such a priority.  This could be dangerous, because it
+# is possible that a bug in MOC will freeze your computer.
+#UseRealtimePriority = no
+
+# The number of audio files for which MOC will cache tags.  When this limit
+# is reached, file tags are discarded on a least recently used basis (with
+# one second resolution).  You can disable the cache by giving it a size of
+# zero.  Note that if you decrease the cache size below the number of items
+# currently in the cache, the number will not decrease immediately (if at
+# all).
+#TagsCacheSize = 256
+
+# Number items in the playlist.
+#PlaylistNumbering = yes
+
+# When the song changes, should the menu be scrolled so that the currently
+# played file is visible?
+FollowPlayedFile = yes
+
+# What to do if the interface was started and the server is already playing
+# something from the playlist?  If CanStartInPlaylist is set to 'yes', the
+# interface will switch to the playlist.  When set to 'no' it will start
+# from the last directory.
+#CanStartInPlaylist = yes
+
+# Display the cursor in the line with the selected file.  Some braille
+# readers (the Handy Tech modular series ZMU 737, for example) use the
+# cursor to focus and can make use of it to present the file line even
+# when other fields are changing.
+#UseCursorSelection = no
+
+# Set the terminal title when running under xterm.
+#SetXtermTitle = yes
+
+# Set the terminal title when running under screen(1).  If MOC can detect
+# that it is running under screen(1), then it will set an appropriate
+# title (see description of ScreenTerms above).  However, if multiple
+# levels of screen management are involved, detection might fail and this
+# could cause a screen upset.  In that situation you can use this option
+# to force screen titles off.
+#SetScreenTitle = yes
+
+# Display full paths instead of just file names in the playlist.
+#PlaylistFullPaths = yes
+
+# The following setting describes how block markers are displayed in
+# the play time progress bar.  Its value is a string of exactly three
+# characters.  The first character is displayed in a position which
+# corresponds to the time marked as the start of a block and the last
+# character to the time marked as the end of the block.  The middle
+# character is displayed instead if both the start and the end of the block
+# would fall in the same position (within the resolution of the interface).
+# You can turn off the displaying of these block marker positions by using
+# three space characters.
+#BlockDecorators = "`\"'"
+
+# How long (in seconds) to leave a message displayed on the screen.
+# Setting this to a high value allows you to scroll through the messages
+# using the 'hide_message' key.  Setting it to zero means you'll have to
+# be quick to see any message at all.  Any new messages will be queued up
+# and displayed after the current message's linger time expires.
+#MessageLingerTime = 3
+
+# Does MOC display a prefix on delayed messages indicating
+# the number of queued messages still to be displayed?
+#PrefixQueuedMessages = yes
+
+# String to append to the queued message count if any
+# error messages are still waiting to be displayed.
+#ErrorMessagesQueued = "!"
+
+# Self-describing ModPlug options (with 'yes' or 'no' values).
+#ModPlug_Oversampling = yes
+#ModPlug_NoiseReduction = yes
+#ModPlug_Reverb = no
+#ModPlug_MegaBass = no
+#ModPlug_Surround = no
+
+# ModPlug resampling mode.
+# Valid values are:
+#
+#     FIR -      8 tap fir filter (extremely high quality)
+#     SPLINE -   Cubic spline interpolation (high quality)
+#     LINEAR -   Linear interpolation (fast, good quality)
+#     NEAREST -  No interpolation (very fast, extremely bad sound quality)
+#
+#ModPlug_ResamplingMode = FIR
+
+# Other self-describing ModPlug audio characteristic options.
+# (Note that the 32 bit sample size seems to be buggy.)
+#ModPlug_Channels = 2               # 1 or 2 channels
+#ModPlug_Bits = 16                  # 8, 16 or 32 bits
+#ModPlug_Frequency = 44100          # 11025, 22050, 44100 or 48000 Hz
+#ModPlug_ReverbDepth = 0            # 0 (quiet) to 100 (loud)
+#ModPlug_ReverbDelay = 0            # Delay in ms (usually 40-200ms)
+#ModPlug_BassAmount = 0             # 0 (quiet) to 100 (loud).
+#ModPlug_BassRange = 10             # Cutoff in Hz (10-100).
+#ModPlug_SurroundDepth = 0          # Surround level 0(quiet)-100(heavy).
+#ModPlug_SurroundDelay = 0          # Surround delay in ms, usually 5-40ms.
+#ModPlug_LoopCount = 0              # 0 (never), n (times) or -1 (forever)
+
+# Self-describing TiMidity audio characteristic options.
+#TiMidity_Rate = 44100              # Between 8000 and 48000
+#TiMidity_Bits = 16                 # 8 or 16
+#TiMidity_Channels = 2              # 1 or 2
+#TiMidity_Volume = 100              # 0 to 800
+
+# You can setup a TiMidity-Config-File here.
+# Leave it unset to use library defaults (/etc/timidity.cfg mostly).
+# Setting it to 'yes' also uses the library defaults.
+# Set it to 'no' if you don't have any configuration file.
+# Otherwise set it to the name of a specific file.
+#TiMidity_Config =
+
+# Self-describing SidPlay2 audio characteristic options.
+#SidPlay2_DefaultSongLength = 180   # If not in database (in seconds)
+#SidPlay2_MinimumSongLength = 0     # Play at least n (in seconds)
+#SidPlay2_Frequency = 44100         # 4000 to 48000
+#SidPlay2_Bits = 16                 # 8 or 16
+#SidPlay2_Optimisation = 0          # 0 (worst quality) to 2 (best quality)
+
+# Set path to a HVSC-compatible database (if not set, database is disabled).
+#SidPlay2_Database =
+
+# SidPlay2 playback Mode:
+#
+#     "M": Mono (best for many SIDs)
+#     "S": Stereo
+#     "L"/"R": Left / Right
+#
+#SidPlay2_PlayMode = "M"
+
+# Use start-song information from SID ('yes') or start at first song
+# ('no').  Songs before the start-song won't be played.  (Note that this
+# option previously took the values 1 and 0; these are now deprecated
+# in favour of 'yes' and 'no'.)
+#SidPlay2_StartAtStart = yes
+
+# Play sub-tunes.  (Note that this option previously took the values 1
+# and 0; these are now deprecated in favour of 'yes' and 'no'.)
+#SidPlay2_PlaySubTunes = yes
+
+# Run the OnSongChange command when a new song starts playing.
+# Specify the full path (i.e. no leading '~') of an executable to run.
+# Arguments will be passed, and you can use the following escapes:
+#
+#     %a artist
+#     %r album
+#     %f filename
+#     %t title
+#     %n track
+#     %d file duration in XX:YY form
+#     %D file duration, number of seconds
+#
+# No pipes/redirects can be used directly, but writing a shell script
+# can do the job.
+#
+# Example:    OnSongChange = "/home/jack/.moc/myscript %a %r"
+#
+#OnSongChange = "'%a %t %n' >> ~/.moc/nowplaying"
+OnSongChange = "/home/mindi/.config/awesome/scripts/nowplay"
+
+# If RepeatSongChange is 'yes' then MOC will execute the command every time
+# a song starts playing regardless of whether or not it is just repeating.
+# Otherwise the command will only be executed when a different song is
+# started.
+#RepeatSongChange = no
+
+# Run the OnStop command (full path, no arguments) when MOC changes state
+# to stopped (i.e., when user stopped playing or changes a song).
+#OnStop = "/home/mindi/.config/awesome/scripts/nowplay"
+
+# This option determines which song to play after finishing all the songs
+# in the queue.  Setting this to 'yes' causes MOC to play the song which
+# follows the song being played before queue playing started. If set to
+# 'no', MOC will play the song following the last song in the queue if it
+# is in the playlist.  The default is 'yes' because this is the way other
+# players usually behave.  (Note that this option previously took the
+# values 1 and 0; these are now deprecated in favour of 'yes' and 'no'.)
+#QueueNextSongReturn = yes

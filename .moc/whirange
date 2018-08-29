@@ -1,0 +1,38 @@
+#### MOCP Theme 
+#### Mindi (contact@mindinet.org)
+
+background              = black 	default
+frame                   = black 	default
+window_title            = black 	default
+directory               = black 	default		bold
+selected_directory      = yellow 	black 		bold
+playlist                = black 	default		bold
+selected_playlist       = yellow 	black		bold
+file                    = black 	default
+selected_file           = yellow 	black 		bold
+marked_file             = yellow 	default 	bold
+marked_selected_file    = yellow 	default 	bold,reverse
+info                    = black 	default 	bold
+selected_info           = yellow 	black 		bold
+marked_info             = black 	default 	bold
+marked_selected_info    = yellow 	default 	bold,reverse
+status                  = black 	default 	
+title                   = black 	default 	
+state                   = default 	black 		bold
+current_time            = black 	default 	
+time_left               = black 	default 	
+total_time              = black 	default 	
+time_total_frames       = black 	default 
+sound_parameters        = black 	default 	
+legend                  = yellow 	default 	bold
+disabled                = black 	default
+enabled                 = yellow 	default 	bold
+empty_mixer_bar         = black 	default 	bold
+filled_mixer_bar        = yellow 	default 		bold,reverse
+empty_time_bar          = default 	default 	bold
+filled_time_bar         = yellow 	yellow 		bold,reverse
+entry                   = default 	default
+entry_title             = black         default
+error                   = red 		white
+message                 = black 	default 	
+plist_time              = default 	default 	bold
