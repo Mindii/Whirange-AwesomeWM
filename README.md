@@ -5,6 +5,10 @@ These are my config files for [Awesome](https://awesomewm.org/).
 # Progress
 - [x] Key bindings
 - [x] Whirange Theme
+    - [x] Awesome
+    - [x] MOC
+    - [x] Hexchat
+    - [x] Notepadqq
 - [ ] Toolbar
   - [x] Basics 
   - [ ] Widgets
