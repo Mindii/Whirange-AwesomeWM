@@ -1,0 +1,33 @@
+/**
+ *
+ *  Whirange color palette by mindi
+ *  https://github.com/mindii/
+ * 
+**/
+.cm-s-mindinet .CodeMirror-gutters { background: #ffffff !important; }
+.cm-s-mindinet .CodeMirror-foldgutter-open, .CodeMirror-foldgutter-folded { color: #525252; }
+.cm-s-mindinet .CodeMirror-cursor { border-left: 1px solid #525252; }
+.cm-s-mindinet { background-color: #ffffff; color: #2e2e2e; }
+.cm-s-mindinet span.cm-builtin { color: #2e2e2e; font-weight: bold; }
+.cm-s-mindinet span.cm-comment { color: #949494; }
+.cm-s-mindinet span.cm-keyword { color: #000000; font-weight: bold; }
+.cm-s-mindinet span.cm-atom { color: #ffa700; }
+.cm-s-mindinet span.cm-def { color: #ffa700; }
+.cm-s-mindinet span.cm-variable { color: #ffa700; }
+.cm-s-mindinet span.cm-variable-2 { color: #ff981f; }
+.cm-s-mindinet span.cm-string { color: #525252; }
+.cm-s-mindinet span.cm-string-2 { color: #525252; }
+.cm-s-mindinet span.cm-number { color: #2e2e2e; }
+.cm-s-mindinet span.cm-tag { color: #ffa700; }
+.cm-s-mindinet span.cm-property { color: #1c1c1c; }
+.cm-s-mindinet span.cm-attribute { color: #1c1c1c; }
+.cm-s-mindinet span.cm-qualifier { color: #666666; }
+.cm-s-mindinet span.cm-meta { color: #ff981f; }
+.cm-s-mindinet span.cm-header { color: #ff981f; }
+.cm-s-mindinet span.cm-operator { color: #ffa700; }
+.cm-s-mindinet span.CodeMirror-matchingbracket { box-sizing: border-box; background: transparent; border-bottom: 1px solid; }
+.cm-s-mindinet span.CodeMirror-nonmatchingbracket { border-bottom: 1px solid; background: none; }
+.cm-s-mindinet .CodeMirror-activeline { background: #f0f0f0; }
+.cm-s-mindinet .CodeMirror-activeline-background { background: #f0f0f0; }
+.cm-s-mindinet div.CodeMirror-selected { background: #c7c7c7; }
+.cm-s-mindinet .CodeMirror-focused div.CodeMirror-selected { background: #4f4f4f; }
