@@ -1,5 +1,5 @@
-# What is this
-These are my config files for [Awesome](https://awesomewm.org/).
+# Whirange Awesome
+These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 ![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/screenshot/screenshot_v01.png)
 
 # Progress
