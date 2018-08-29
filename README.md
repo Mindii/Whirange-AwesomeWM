@@ -9,7 +9,6 @@ These are my config files for [Awesome](https://awesomewm.org/).
     - [x] Now Playing for MOC notifications
     - [ ] Now Playing paste
     - [ ] URL to mpv
-    - [ ] ..
 - [x] Whirange Theme
     - [x] Awesome
     - [x] MOC
@@ -23,7 +22,6 @@ These are my config files for [Awesome](https://awesomewm.org/).
   - [x] MOC - Now Playing
 - [ ] Conky
 - [ ] Custom layouts for Awesome
-- [ ] ..?
 
 # Key bindings
 `Mod` Win Key
