@@ -19,7 +19,7 @@ if [ "${state}" == "PLAY" ]; then
 	if [ ! -e "${cover_exists}" ]; then
 		cover_exists="$(find "${folder}/" -iname "folder.*")"
 		if [ ! -e "${cover_exists}" ]; then
-		cover_exists=""${HOME}"/.config/awesome/themes/whirange/icon/test.png"
+		cover_exists=""${HOME}"/.config/awesome/themes/whirange/icon/logo_80.png"
 		fi
 	fi
 
@@ -29,4 +29,8 @@ if [ "${state}" == "PLAY" ]; then
 	else
 		echo 'require("naughty").notify({ title = "Playing", text="'${file}'", icon="'${cover_exists}'", icon_size='${notify_icon_size}', timeout='${notify_timeout}'})' | awesome-client
 	fi
+fi
+
+if [ "${state}" == "STOP" ]; then
+	echo 'require("naughty").notify({ title="Music on console", text="Playing stopped", timeout='${notify_timeout}'})' | awesome-client
 fi
