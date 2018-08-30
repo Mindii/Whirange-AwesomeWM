@@ -1,4 +1,4 @@
-# Awesome configs
+# Awesomewm dots
 These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 
 ![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1535629485_screen.png)
