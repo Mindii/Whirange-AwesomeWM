@@ -10,7 +10,7 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
     - [ ] Upcomming script binds
 - [ ] Scripts
     - [x] Now Playing for MOC notifications
-    - [x] Scrobbling to last.fm & libre.fm with (https://aur.archlinux.org/packages/mocp-scrobbler/)
+    - [x] Scrobbling to last.fm & libre.fm with [mocp-scrobbler](https://aur.archlinux.org/packages/mocp-scrobbler/)
     - [ ] Now Playing paste
     - [ ] URL to mpv
 - [x] Whirange Theme
