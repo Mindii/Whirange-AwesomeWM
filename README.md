@@ -48,5 +48,3 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 # Screenshots
 ![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1535628857_screen.png)
 Moc + Notification
-
-![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/screenshot_v01.png)
