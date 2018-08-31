@@ -1,0 +1,5 @@
+[scrobbler]
+login = 
+streams = true
+hostname = turtle.libre.fm
+password_md5 = 
