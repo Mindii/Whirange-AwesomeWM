@@ -11,6 +11,7 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 - [ ] Scripts
     - [x] Now Playing for [MOC](http://moc.daper.net/) notifications
     - [x] Scrobbling to last.fm & libre.fm with [mocp-scrobbler](https://aur.archlinux.org/packages/mocp-scrobbler/)
+    - [x] Autostart for programs
     - [ ] Now Playing paste
     - [ ] URL to mpv
 - [x] Whirange Theme
