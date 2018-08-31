@@ -15,17 +15,17 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
     - [ ] Now Playing paste
     - [ ] URL to mpv
 - [x] Whirange Theme
-    - [x] Awesome
+    - [x] [Awesome](https://awesomewm.org/)
     - [x] [MOC](http://moc.daper.net/)
-    - [x] Hexchat
-    - [x] Notepadqq
+    - [x] [Hexchat](https://hexchat.github.io/)
+    - [x] [Notepadqq](https://notepadqq.com)
 - [ ] Toolbar
   - [x] Basics 
   - [ ] Widgets
   - [ ] Fonts
 - [ ] Notifications
   - [x] [MOC](http://moc.daper.net/) - Now Playing
-- [ ] Conky
+- [ ] [Conky](https://github.com/brndnmtthws/conky)
 - [ ] Custom layouts for Awesome
 
 # Key bindings
