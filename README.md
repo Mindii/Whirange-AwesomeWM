@@ -9,13 +9,13 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
     - [x] Media Keys
     - [ ] Upcomming script binds
 - [ ] Scripts
-    - [x] Now Playing for MOC notifications
+    - [x] Now Playing for [MOC](http://moc.daper.net/) notifications
     - [x] Scrobbling to last.fm & libre.fm with [mocp-scrobbler](https://aur.archlinux.org/packages/mocp-scrobbler/)
     - [ ] Now Playing paste
     - [ ] URL to mpv
 - [x] Whirange Theme
     - [x] Awesome
-    - [x] MOC
+    - [x] [MOC](http://moc.daper.net/)
     - [x] Hexchat
     - [x] Notepadqq
 - [ ] Toolbar
@@ -23,7 +23,7 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
   - [ ] Widgets
   - [ ] Fonts
 - [ ] Notifications
-  - [x] MOC - Now Playing
+  - [x] [MOC](http://moc.daper.net/) - Now Playing
 - [ ] Conky
 - [ ] Custom layouts for Awesome
 
