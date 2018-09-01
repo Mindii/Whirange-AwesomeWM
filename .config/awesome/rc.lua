@@ -47,8 +47,8 @@ Mindi.Path = {}
 Mindi.Bar =	{}
 -- Main	Vars
 Mindi.Mod =					'Mod4' -- Mod key
-Mindi.Tags1 = 				{"[1] Main", "[2] Dev", "[3] Dev II", "[4] Browser", "[5] Gaming", "[6] Chat", "[7] Email"}
-Mindi.Tags2 = 				{"[1] Video", "[2] Browser", "[3] Chat"}
+Mindi.Tags1 = 				{"Main", "Dev", "Dev2", "Dev3", "Gaming", "Chat", "Email"}
+Mindi.Tags2 = 				{"Video", "Browser", "Music"}
 -- Programs
 Mindi.Prog.Terminal	= 		'urxvt'	-- Terminal command (Mod + Return)
 Mindi.Prog.FileManager = 	'thunar' -- Filemanager (Mod	+ E)
@@ -83,6 +83,15 @@ awful.layout.layouts = {
 	--	awful.layout.suit.corner.sw,
 	--	awful.layout.suit.corner.se,
 }
+
+-- now playing
+--Mindi = {}
+--Mindi.NowPlaying = "Empty"
+
+--if Mindi.NowPlaying not "Empty" then
+--	naughty.notify({ title = "Achtung", text = "Youre idling", timeout = 0 })
+--else
+--end
 
 -------------------------------------------------------------------------------
 -- Helper functions
@@ -163,8 +172,19 @@ awful.screen.connect_for_each_screen(function(s)
 	set_wallpaper(s)
 
 	tags = {}
+	-- If primary screen then add tags from Mindi.Tag1 var
 	if s == screen.primary then
-		awful.tag.new(Mindi.Tags1, s, awful.layout.layouts[1])
+		-- Lets add first tag alone so that we can set it default select
+		awful.tag.add(Mindi.Tags1[1], {layout = awful.layout.layouts[1], screen = s, selected = true})
+
+		-- Loop awful.tag.add until all var tags have been used.
+		Mindi.TagCount = 2
+		while (Mindi.TagCount < #Mindi.Tags1+1)
+		do
+			awful.tag.add(Mindi.Tags1[Mindi.TagCount], {layout = awful.layout.layouts[1], screen = s})
+			Mindi.TagCount = Mindi.TagCount+1
+		end
+	-- If some other tag add tags from Mindi.Tag2 var ( if more than 2 displays remember to change this )
 	else
 		awful.tag(Mindi.Tags2, s, awful.layout.layouts[1])
 	end
@@ -183,7 +203,7 @@ awful.screen.connect_for_each_screen(function(s)
 	s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all,	taglist_buttons)
 
 	--	Create a tasklist widget
-	s.mytasklist =	awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
+	s.mytasklist =	awful.widget.tasklist(s, awful.widget.tasklist.filter.minimizedcurrenttags, tasklist_buttons)
 
 	--	Create the wibox
 	s.mywibox = awful.wibar({ position	= "top", screen	= s, height	= Mindi.Bar.Height })
@@ -199,7 +219,7 @@ awful.screen.connect_for_each_screen(function(s)
 		},
 		{	-- Middle widget		
 			   layout = wibox.layout.fixed.horizontal,
-			  --s.mytasklist,
+			  s.mytasklist,
 		},
 		{	-- Right widgets
 			layout =	wibox.layout.fixed.horizontal,
