@@ -1,6 +1,13 @@
 #!/bin/bash
+
+-------------------------------------------------------------------------------
+-- Nowplaying notification script
+-- Mindi @ Mindinet.org
+-- GNU General Public License v3.0
+-------------------------------------------------------------------------------
+
 notify_icon_size="80"
-notify_timeout="10"
+notify_timeout="15"
 
 sleep 0.7
 info="$(mocp -i)"
@@ -11,6 +18,9 @@ if [ "${state}" == "PLAY" ]; then
 	# Data Variables
 	artist="$(echo "${info}"|grep Artist:|cut -d ' ' -f2-)"
 	song="$(echo "${info}"|grep SongTitle:|cut -d ' ' -f2-)"
+	album="$(echo "${info}"|grep Album:|cut -d ' ' -f2-)"
+	time="$(echo "${info}"|grep TotalTime:|cut -d ' ' -f2-)"
+	bitrate="$(echo "${info}"|grep AvgBitrate:|cut -d ' ' -f2-)"
 	file="$(echo "${info}"|grep File:|rev|cut -d '/' -f1|rev)"
 	folder="/$(echo "${info}"|grep File:|rev|cut -d '/' -f2-|rev|cut -d '/' -f2-)"
 	cover_exists="$(find "${folder}/" -iname "cover.*")"
@@ -22,15 +32,28 @@ if [ "${state}" == "PLAY" ]; then
 		cover_exists=""${HOME}"/.config/awesome/themes/whirange/icon/logo_80.png"
 		fi
 	fi
+	
+	# Check artist length
+	if [ "${#artist}" -gt "22" ]; then
+		artist="${artist:0:22}.."
+	fi
+	# Check song length
+	if [ "${#song}" -gt "22" ]; then
+		song="${song:0:22}.."
+	fi
+	# Check album length
+	if [ "${#album}" -gt "27" ]; then
+		album="${album:0:27}.."
+	fi
 
 	# Filename fallback
 	if [ "$song" != "" ] && [ "$artist" != "" ]; then
-		echo 'require("naughty").notify({ title="'${artist}'", text="'${song}'", icon="'${cover_exists}'", icon_size='${notify_icon_size}', timeout='${notify_timeout}'})' | awesome-client
+		echo 'require("naughty").notify({ title="'${artist}'", text="'${song}' ('${time}')\n'${album}'\n\n'${bitrate}'", icon="'${cover_exists}'", icon_size='${notify_icon_size}', timeout='${notify_timeout}', screen='1'})' | awesome-client
 	else
-		echo 'require("naughty").notify({ title = "Playing", text="'${file}'", icon="'${cover_exists}'", icon_size='${notify_icon_size}', timeout='${notify_timeout}'})' | awesome-client
+		echo 'require("naughty").notify({ title = "Playing", text="'${file}'", icon="'${cover_exists}'", icon_size='${notify_icon_size}', timeout='${notify_timeout}', screen='1'})' | awesome-client
 	fi
 fi
 
 if [ "${state}" == "STOP" ]; then
-	echo 'require("naughty").notify({ title="Music on console", text="Playing stopped", timeout='${notify_timeout}'})' | awesome-client
+	echo 'require("naughty").notify({ title="Music on console", text="Nothing playing", timeout='${notify_timeout}'})' | awesome-client
 fi
