@@ -1,10 +1,10 @@
 #!/bin/bash
 
--------------------------------------------------------------------------------
--- Nowplaying notification script
--- Mindi @ Mindinet.org
--- GNU General Public License v3.0
--------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+#-- Nowplaying notification script
+#-- Mindi @ Mindinet.org
+#-- GNU General Public License v3.0
+#-------------------------------------------------------------------------------
 
 notify_icon_size="80"
 notify_timeout="15"
@@ -52,8 +52,6 @@ if [ "${state}" == "PLAY" ]; then
 	else
 		echo 'require("naughty").notify({ title = "Playing", text="'${file}'", icon="'${cover_exists}'", icon_size='${notify_icon_size}', timeout='${notify_timeout}', screen='1'})' | awesome-client
 	fi
-fi
-
-if [ "${state}" == "STOP" ]; then
+else
 	echo 'require("naughty").notify({ title="Music on console", text="Nothing playing", timeout='${notify_timeout}'})' | awesome-client
 fi
