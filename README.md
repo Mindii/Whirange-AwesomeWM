@@ -44,6 +44,7 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 - `Mod + d` Open Launcher
 - `Mod + e` Open File manager
 - `Mod + m` Open MOC
+- `Mod + x` Nowplaying string to current window
 
 # Screenshots
 ![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1535628857_screen.png)
