@@ -28,6 +28,12 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 - [ ] [Conky](https://github.com/brndnmtthws/conky)
 - [ ] Custom layouts for Awesome
 
+# Requirements (WIP)
+- Awesome
+- MOC
+- xdotool
+- ffmpeg
+
 # Key bindings
 `Mod` Win Key
 
