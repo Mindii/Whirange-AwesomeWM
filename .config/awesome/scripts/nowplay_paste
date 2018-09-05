@@ -1,0 +1,76 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+#-- Nowplaying paste to current window
+#-- Requirements: xdotool, moc & ffmpeg
+#-- Mindi @ Mindinet.org
+#-- GNU General Public License v3.0
+#-----------------------
+
+windowid=$(xdotool getwindowfocus)
+info="$(mocp -i)"
+state="$(echo "${info}"|grep State:|cut -d ' ' -f2-)"
+
+# Run stuff only if player plays something
+if [ "${state}" == "PLAY" ]; then
+	# Data Variables
+	artist="$(echo "${info}"|grep Artist:|cut -d ' ' -f2-)"
+	song="$(echo "${info}"|grep SongTitle:|cut -d ' ' -f2-)"
+	album="$(echo "${info}"|grep Album:|cut -d ' ' -f2-)"
+	time="$(echo "${info}"|grep TotalTime:|cut -d ' ' -f2-)"
+	bitrate="$(echo "${info}"|grep AvgBitrate:|cut -d ' ' -f2-)"
+	file="$(echo "${info}"|grep File:|rev|cut -d '/' -f1|rev)"
+	folder="/$(echo "${info}"|grep File:|rev|cut -d '/' -f2-|rev|cut -d '/' -f2-)"
+	fulltree="$(echo "${info}"|grep File:|cut -d ' ' -f2-)"
+	cover_exists="$(find "${folder}/" -iname "cover.*")"
+	
+	# V2 Data Variables with ffprobe for more information
+	info_v2="$(ffprobe "${fulltree}" 2>&1)"
+	date="($(echo "${info_v2}" | sed -E -n 's/^ *DATE *: (.*)/\1/p'))"
+	genre=", $(echo "${info_v2}" | sed -E -n 's/^ *GENRE *: (.*)/\1/p')" 
+	
+	echo $date
+
+	# Set Cover
+	if [ ! -e "${cover_exists}" ]; then
+		cover_exists="$(find "${folder}/" -iname "folder.*")"
+		if [ ! -e "${cover_exists}" ]; then
+		cover_exists=""${HOME}"/.config/awesome/themes/whirange/icon/logo_80.png"
+		fi
+	fi
+	
+	# Check artist length
+	if [ "${#artist}" -gt "22" ]; then
+		artist="${artist:0:22}.."
+	fi
+	# Check song length
+	if [ "${#song}" -gt "22" ]; then
+		song="${song:0:22}.."
+	fi
+	# Check album length
+	if [ "${#album}" -gt "27" ]; then
+		album="${album:0:27}.."
+	fi
+	# Check if genre name is too short
+	if [ "${#genre}" -le "3" ]; then
+		genre=""
+	fi
+	# Check if date is too short
+	if [ "${#date}" -le "3" ]; then
+		date=""
+	else
+		date=" $date"
+	fi
+
+
+	np_string=".: $artist - ${song} (${time}) :: ${album}${date} :: ${bitrate}${genre} :."
+	# Filename fallback
+	if [ "$song" != "" ] && [ "$artist" != "" ]; then
+		sleep 0.5
+		setxkbmap fi
+		xdotool windowactivate --sync $windowid type "${np_string}"
+	else
+		sleep 0.5
+		setxkbmap fi
+		xdotool windowactivate --sync $windowid type "'${artist}'"
+	fi
+fi
