@@ -1,0 +1,91 @@
+@-moz-document domain(reddit.com) {
+  #header {
+    background-color: #fff !important;
+    border-bottom: 1px solid #ffa700 !important;
+  }
+  
+  #sr-header-area {
+    background-color: #fff !important;
+	border-bottom: 1px solid #ffa700 !important;
+  }
+  
+  #sr-more-link {
+	background-color: #fff !important;
+	margin: -1px !important;
+	border: 1px solid #ffa700 !important;
+  }
+
+  .srdrop .choice {
+    background: #fff !important;
+  }
+  
+  a {
+    color: #ff981f !important;
+  }
+  
+  #header-bottom-right {
+    background-color: transparent !important;
+  }
+  
+  .tabmenu li a {
+    background-color: #fff !important;
+    border: 1px solid #cecece !important;
+    border-bottom: 1px solid white !important;
+  }
+
+  .tabmenu li.selected a {
+    color: #ff981f !important;
+    background-color: white !important;
+    border: 1px solid #ff981f !important;
+    border-bottom: 1px solid white !important;
+    z-index: 100 !important;
+  }
+
+  .thing .title {
+    color: #2b2b2b !important;
+  }
+  
+  .tagline a, .search-result-meta a {
+    color: #ff981f !important;
+    text-decoration: none !important;
+  }
+  
+  .entry .buttons li a {
+    color: #ff981f !important;
+    font-weight: bold !important;
+    padding: 0 1px !important;
+  }
+  
+  .morelink,
+  .sidebox .spacer {
+    display: none !important !important;
+  }
+  
+  .linkinfo {
+    border: 1px solid #ff981f !important;
+    background-color: #fff !important;
+  }
+  
+  #search input[type="text"] {
+    border: 1px solid #ff981f !important;
+  }
+  
+  .md a {
+    color: #ff981f !important;
+  }
+
+  #sr-header-area .redesign-beta-optin {
+    display: none;
+  }
+
+  .morelink {
+	position: initial !important;
+    border: 1px solid #ffa700 !important;
+	background-image: none !important;
+	
+  }
+  
+  .morelink .nub {
+	background-image: none !important;
+  }
+}
