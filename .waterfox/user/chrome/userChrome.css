@@ -1,0 +1,222 @@
+
+/*===============================================
+  Mindi - Mindinet.org
+  Note: very basic, clean, white skin with orange accent color for Waterfox (Firefox).
+===============================================*/
+
+/* MAIN BROWSER */
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+#TabsToolbar {
+    background: #fff !important;
+}
+
+#main-window:not([privatebrowsingmode="true"])[sizemode="normal"] #TabsToolbar {
+    margin-left: 1px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+}
+
+#main-window:not([privatebrowsingmode="true"])[sizemode="maximized"] #TabsToolbar {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    margin-top: 0px !important;
+}
+
+#main-window:not([privatebrowsingmode="true"])[sizemode="fullscreen"] #TabsToolbar {
+    margin-right: -53px !important;
+    margin-left: 0px !important;
+    margin-top: 0px !important;
+}
+
+#TabsToolbar .arrowscrollbox-scrollbox {
+    padding: 0px !important;
+}
+
+#TabsToolbar .tabbrowser-tabs {
+    min-height: 32px !important;
+    margin-bottom: 0px !important;
+}
+
+#TabsToolbar .tabbrowser-tab {
+    -moz-border-top-colors: none !important;
+    -moz-border-left-colors: none !important;
+    -moz-border-right-colors: none !important;
+    -moz-border-bottom-colors: none !important;
+    border-color: rgba(43, 43, 43, .20) !important;
+    border-width: 0px 1px 0px 1px !important;
+    padding: 0px 0px !important;
+    background: transparent !important;
+    background-clip: padding-box !important;
+    transition: all .4s !important;
+    margin-left: -1px !important;
+}
+
+#TabsToolbar .tabs-newtab-button {
+    -moz-border-top-colors: none !important;
+    -moz-border-left-colors: none !important;
+    -moz-border-right-colors: none !important;
+    -moz-border-bottom-colors: none !important;
+    background: rgba(255, 255, 255, .5) !important;
+}
+
+#TabsToolbar tab:not([selected="true"]) {
+    background: #efefef !important;
+    color: #858585 !important;
+    -webkit-filter: grayscale(1);
+}
+
+#TabsToolbar .tabbrowser-tab[selected] {
+    color: #ff981f !important;
+    font-weight: bold;
+    background: #fff !important;
+    background-clip: padding-box !important;
+    border-color: #cfcfcf !important;
+    border-top-color: #cfcfcf !important;
+}
+
+#TabsToolbar .tabs-newtab-button:hover:not([selected]) {
+    border-color: transparent !important;
+}
+
+#TabsToolbar .tabbrowser-tab:hover:not([selected]) {
+    -webkit-filter: grayscale(0);
+    border-color: transparent !important;
+    border-top-color: transparent !important;
+    background-color: #f5f5f5 !important;
+    color: #434343 !important;
+}
+
+#TabsToolbar .tab-background {
+    margin: 0 !important;
+    background: transparent !important;
+}
+
+#TabsToolbar .tab-background-start,
+#TabsToolbar .tab-background-end {
+    display: none !important;
+}
+
+#TabsToolbar .tab-background-middle {
+    margin: -4px -2px !important;
+    background: transparent !important;
+}
+
+#TabsToolbar .tabbrowser-tab:after,
+#TabsToolbar .tabbrowser-tab:before {
+    display: none !important;
+}
+
+#TabsToolbar .tabs-newtab-button {
+    border-width: 0px !important;
+    margin: 0px !important;
+    width: auto !important;
+    padding: 0px 6px !important;
+}
+
+#addon-bar,#PersonalToolbar,
+#main-window:not([privatebrowsingmode])[sizemode="maximized"] #nav-bar {
+    border-top-color: transparent !important;
+    padding-right: 5px !important;
+}
+
+#navigator-toolbox::after {
+    background: #fff !important;
+}
+
+#nav-bar {
+    background: #fff !important;
+    box-shadow: none !important;
+    background-clip: padding-box !important;
+    border-color: transparent !important;
+    border-bottom-right-radius: 10px !important;
+    border-bottom: 1px solid #ff981f !important;
+}
+
+#PanelUI-button {
+    background-image: none !important;
+}
+
+#nav-bar-customization-target {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+#nav-bar .toolbarbutton-1:not([type="menu-button"]),
+#nav-bar .toolbarbutton-1 > .toolbarbutton-menubutton-button,
+#nav-bar .toolbarbutton-1 > .toolbarbutton-menubutton-dropmarker {
+    padding-top: 5px !important;
+    padding-bottom: 6px !important;
+}
+
+#nav-bar {
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: -1px !important;
+    padding: 0px !important;
+    border-radius: 0px !important;
+    border-top: 0px #282B34 !important;
+    box-shadow: none !important;
+}
+
+#main-window:not([privatebrowsingmode])[sizemode="normal"] #nav-bar {
+    background: rgba(255, 255, 255, 100) !important;
+    margin-top: 0px !important;
+    margin-left: 1px !important;
+    margin-right: 1px !important;
+    margin-bottom: -1px !important;
+    padding: 0px !important;
+    border-radius: 0px !important;
+    border-top: 0px #494949 !important;
+    box-shadow: none !important;
+}
+
+#urlbar {
+    background: transparent !important;
+    padding: 0px !important;
+    text-align: left!important;
+    padding-left: 8px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 20px !important;
+    margin-right: 4px !important;
+    border: 1px solid transparent !important;
+    color: #ff8a00 !important;
+    font-family: "Segoe UI Semibold", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    box-shadow: none !important;
+}
+
+.urlbar-input {
+    padding-left: 10px !important;
+}
+
+.ac-type-icon,.search-go-button,.search-go-button-stack,.search-go-button,
+#feed-button,#go-button,#urlbar-reload-button,
+image.urlbar-icon#reader-mode-button,
+#back-button > .toolbarbutton-icon,
+#forward-button > .toolbarbutton-icon,
+#PanelUI-button {
+    display: none !important;
+}
+
+/*###############################################
+  Icons
+#################################################*/
+
+/* Folder */
+.bookmark-item[container]:not([query="true"]) {
+list-style-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAGFBMVEUAAAD/mB//mB//mB//mB//mB//mB//mB+NuWwpAAAAB3RSTlMAoZzy76kkXsVIwgAAACxJREFUCNdjgAOm8nIBMIO9vLwUygCBkgQoo7wArhYuQhqDGcZgAlEg+zAAAFFlInnt8K0xAAAAAElFTkSuQmCC') !important;
+-moz-image-region: rect(0px, 16px, 16px, 0px) !important;
+}
+
+/* File */
+.bookmark-item {
+list-style-image:  url(' data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAANlBMVEUAAADsjirmiy31kybzkifxkSjVgzTFezn/mB/0kib3lCT5lSPbhjLOfzedaEFKSkr/mB//snu0VkxjAAAAEHRSTlMApJj49vXSafnn4fWDcT8wkyW6WgAAAEJJREFUGNNjYGBghAIGGBCAAjZ0AS42NAFBiAhCgJNTgBsiAAccrGgCAswEBVgwBSg3gxW7w/jZ2dl5eZhAgI+BAQDkBwm5PPDSvwAAAABJRU5ErkJggg==') !important;
+}
+
+/* ublock */
+#ublock0_raymondhill_net-browser-action {
+list-style-image:  url(' data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAKlBMVEUAAAD/mB//mB//mB//mB//mB//mB//mB//mB//mB//mB//mB//mB//mB8tYPyFAAAADXRSTlMAP1mrIVdthb+ekCS1zzMQzAAAAG5JREFUCNdjAAKxRAYQYBG9ezfQgYGB9y4YXGDggDAaGDghjAkMXHd5Lygo313AwA5kKCvdTWBgAzLOGtwNYGC9K16grARkMN613gxUI8DAAtEFNFEWRF8EWsEIpIEyDGChixBbdS85ACmQJEgCAJldNkGdJOYCAAAAAElFTkSuQmCC') !important;
+}
