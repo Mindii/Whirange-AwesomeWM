@@ -1,4 +1,4 @@
-# Awesomewm dots
+# Awesomewm dots WIP
 These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 
 ![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1535629485_screen.png)
@@ -7,18 +7,18 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 - [ ] Key bindings
     - [x] Basics
     - [x] Media Keys
-    - [ ] Upcomming script binds
+    - [ ] ..
 - [ ] Scripts
     - [x] Now Playing for [MOC](http://moc.daper.net/) notifications
     - [x] Scrobbling to last.fm & libre.fm with [mocp-scrobbler](https://aur.archlinux.org/packages/mocp-scrobbler/)
     - [x] Autostart for programs
-    - [ ] Now Playing paste
+    - [x] Now Playing paste
     - [ ] URL to mpv
-- [x] Whirange Theme
+- [ ] Whirange Theme
     - [x] [Awesome](https://awesomewm.org/)
     - [x] [MOC](http://moc.daper.net/)
     - [x] [Hexchat](https://hexchat.github.io/)
-    - [x] [Notepadqq](https://notepadqq.com)
+    - [ ] ..
 - [ ] Toolbar
   - [x] Basics 
   - [ ] Widgets
@@ -28,7 +28,7 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 - [ ] [Conky](https://github.com/brndnmtthws/conky)
 - [ ] Custom layouts for Awesome
 
-# Requirements (WIP)
+# Requirements
 - Awesome
 - MOC
 - xdotool
