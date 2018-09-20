@@ -51,16 +51,19 @@ Mindi.Tags1 = 				{"Main", "Dev", "Dev2", "Dev3", "Gaming", "Chat", "Email"}
 Mindi.Tags2 = 				{"Video", "Browser", "Music"}
 -- Programs
 Mindi.Prog.Terminal	= 		'urxvt'	-- Terminal command (Mod + Return)
-Mindi.Prog.FileManager = 	'thunar' -- Filemanager (Mod	+ E)
+Mindi.Prog.FileManager = 	'thunar' -- Filemanager (Mod + E)
 Mindi.Prog.MusicPlayer = 	'mocp' -- Music	Player (Mod	+ M)
 -- Commands
-Mindi.Command.Screenshot =	awful.util.getdir("config") .. 'scripts/screenshot.sh'		-- Screenshot	Command	(Print + Click on window)
-Mindi.Command.Autostart	=	awful.util.getdir("config") .. 'scripts/autorun.sh'			-- Autostart	Command
+Mindi.Command.Screenshot =	awful.util.getdir("config") .. 'scripts/screenshot.sh' -- Screenshot Command (Print + Click on window)
+Mindi.Command.Autostart	=	awful.util.getdir("config") .. 'scripts/autorun.sh' -- Autostart Command
+Mindi.Command.NPPaste =		awful.util.getdir("config") .. 'scripts/nowplay_paste'
+Mindi.Command.Buy =			awful.util.getdir("config") .. 'scripts/text_paste buy'
+Mindi.Command.Btw =			awful.util.getdir("config") .. 'scripts/text_paste btw'
 -- Paths
 Mindi.Path.Icon	=		 	awful.util.getdir("config")	.. "/themes/whirange/icon/"
 -- Bar
-Mindi.Bar.Height = 			'16'								-- Taskbar Height
-Mindi.Bar.Clock	= 			wibox.widget.textclock(" %R ")	--	Taskbar	Clock
+Mindi.Bar.Height =  		'16' -- Taskbar Height
+Mindi.Bar.Clock	=   		wibox.widget.textclock(" %I:%M %p ")	--	Taskbar	Clock
 
 -------------------------------------------------------------------------------
 -- Layout's
@@ -199,6 +202,13 @@ awful.screen.connect_for_each_screen(function(s)
 						   awful.button({	}, 3, function () awful.layout.inc(-1) end),
 						   awful.button({	}, 4, function () awful.layout.inc(	1) end),
 						   awful.button({	}, 5, function () awful.layout.inc(-1) end)))
+                                    
+                                    
+                                    
+--     Mindi.Bar.Clock:buttons(gears.table.join(
+--                             awful.button({	}, 1, function () Mindi.Bar.Calender end),
+--                             ))
+                                    
 	--	Create a taglist widget
 	s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all,	taglist_buttons)
 
@@ -217,16 +227,20 @@ awful.screen.connect_for_each_screen(function(s)
 			s.mytaglist,
 			s.mypromptbox,
 		},
-		{	-- Middle widget		
-			   layout = wibox.layout.fixed.horizontal,
-			  s.mytasklist,
+		{	-- Middle widgets
+			layout = wibox.layout.fixed.horizontal,
+			s.mytasklist,
 		},
 		{	-- Right widgets
-			layout =	wibox.layout.fixed.horizontal,
+			layout = wibox.layout.fixed.horizontal,
 			Mindi.Bar.Clock,
 		},
 	}
 end)
+	
+-------------------------------------------------------------------------------
+-- Functions
+-------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------
 -- Mouse Bindings
@@ -261,20 +275,24 @@ globalkeys = gears.table.join(
 	awful.key({ Mindi.Mod,	"Shift"	  }, "e", 			awesome.quit),
 	-- Media Keys
 	awful.key({ Mindi.Mod,}, "m",						function() awful.spawn(Mindi.Prog.Terminal .. " -e " .. Mindi.Prog.MusicPlayer) end),
+	awful.key({ Mindi.Mod,}, "z",						function() os.execute(Mindi.Command.NPPaste) end),
 	awful.key({}, "XF86AudioLowerVolume",				function() awful.spawn('amixer set Master 3%-') end),
 	awful.key({}, "XF86AudioRaiseVolume",				function() awful.spawn('amixer set Master 3%+') end),
 	awful.key({}, "XF86AudioPlay",						function() awful.spawn('mocp --play') end),
 	awful.key({}, "XF86AudioStop",						function() awful.spawn('mocp --stop') end),
 	awful.key({}, "XF86AudioNext",						function() awful.spawn('mocp --next') end),
-	awful.key({}, "XF86AudioPrev",						function() awful.spawn('mocp --previous') end)	
+	awful.key({}, "XF86AudioPrev",						function() awful.spawn('mocp --previous') end),
+	-- Other
+	awful.key({ Mindi.Mod, "Control" }, "j",			function() os.execute(Mindi.Command.Buy) end),
+	awful.key({ Mindi.Mod, "Control" }, "b",			function() os.execute(Mindi.Command.Btw) end)
 )
 
 clientkeys = gears.table.join(
 	awful.key({ Mindi.Mod,			}, "f", 			function (c) c.fullscreen	= not c.fullscreen c:raise() end),
 	awful.key({ Mindi.Mod,	"Shift"	}, "q", 			function (c) c:kill() end),
 	awful.key({ Mindi.Mod,	"Shift"	}, "space",			awful.client.floating.toggle),
-	awful.key({	Mindi.Mod,			}, "Tab", 			function () for c	in awful.client.iterate(function (x) return	true end) do client.focus	= c client.focus:raise() end end),
-	awful.key({ Mindi.Mod,	"Shift"	}, "Tab", 			function () awful.client.focus.byidx(1) if client.focus then client.focus:raise() end end)	 
+	awful.key({	Mindi.Mod,			}, "Tab", 			function () for c in awful.client.iterate(function (x) return	true end) do client.focus	= c client.focus:raise() end end),
+	awful.key({ Mindi.Mod,	"Shift"	}, "Tab", 			function () awful.client.focus.byidx(1) if client.focus then client.focus:raise() end end)
 )
 
 -- Bind	all	key	numbers	to tags.
@@ -285,19 +303,24 @@ for	i =	1, 9 do
 				  function ()
 						local	screen = awful.screen.focused()
 						local	tag	= screen.tags[i]
+						local	current = screen.selected_tag
 						if tag then
-						   tag:view_only()
+							tag:view_only()
+						end
+						if tag == current then
+							awful.tag.history.restore()
 						end
 				  end,
 				  {description = "view tag #"..i, group	= "tag"}),
+	                               
 		-- Toggle	tag	display.
 		awful.key({ Mindi.Mod, "Control" }, "#" .. i + 9,
 				  function ()
-					  local screen	= awful.screen.focused()
-					  local tag = screen.tags[i]
-					  if tag then
-						 awful.tag.viewtoggle(tag)
-					  end
+						local screen	= awful.screen.focused()
+						local tag = screen.tags[i]
+						if tag then
+							awful.tag.viewtoggle(tag)
+						end
 				  end,
 				  {description = "toggle tag #"	.. i, group	= "tag"}),
 		-- Move client to	tag.
