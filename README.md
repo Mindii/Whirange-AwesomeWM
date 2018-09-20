@@ -7,6 +7,7 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 - [ ] Key bindings
     - [x] Basics
     - [x] Media Keys
+    - [x] Some i3wm style binds
     - [ ] ..
 - [ ] Scripts
     - [x] Now Playing for [MOC](http://moc.daper.net/) notifications
