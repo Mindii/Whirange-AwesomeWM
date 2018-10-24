@@ -3,6 +3,12 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 
 ![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1540401194_screen.png)
 
+# Screenshots
+![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1540401277_screen.png)
+<br>Calender + Events tooltip from clock<br>
+![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1540401388_screen.png)
+<br>Moc Notification<br>
+
 # Progress
 - [ ] Key bindings
     - [x] Basics
@@ -56,9 +62,3 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 - `Mod + e` Open File manager
 - `Mod + m` Open MOC
 - `Mod + z` Nowplaying string to current window
-
-# Screenshots
-![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1540401277_screen.png)
-<br>Calender + Events tooltip from clock<br>
-![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1540401388_screen.png)
-<br>Moc Notification<br>
