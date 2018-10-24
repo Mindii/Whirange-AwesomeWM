@@ -20,7 +20,7 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
     - [x] [MOC](http://moc.daper.net/)
     - [x] [Hexchat](https://hexchat.github.io/)
     - [ ] ..
-- [ ] Toolbar
+- [x] Toolbar
   - [x] Basics 
   - [x] Widgets
   - [x] Fonts
