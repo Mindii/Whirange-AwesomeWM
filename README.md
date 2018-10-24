@@ -2,8 +2,7 @@
 These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 
 ![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1540401194_screen.png)
-
-# Screenshots
+<brClean<br>
 ![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1540401277_screen.png)
 <br>Calender + Events tooltip from clock<br>
 ![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1540401388_screen.png)
