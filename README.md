@@ -1,7 +1,7 @@
 # Awesome dots WIP
 These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 
-![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1540399605_screen.png)
+![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1540401194_screen.png)
 
 # Progress
 - [ ] Key bindings
