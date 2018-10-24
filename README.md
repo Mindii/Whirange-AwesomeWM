@@ -1,7 +1,7 @@
 # Awesome dots WIP
 These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 
-![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1535629485_screen.png)
+![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1540399605_screen.png)
 
 # Progress
 - [ ] Key bindings
@@ -22,15 +22,15 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
     - [ ] ..
 - [ ] Toolbar
   - [x] Basics 
-  - [ ] Widgets
-  - [ ] Fonts
+  - [x] Widgets
+  - [x] Fonts
 - [ ] Notifications
   - [x] [MOC](http://moc.daper.net/) - Now Playing
-- [ ] [Conky](https://github.com/brndnmtthws/conky)
 - [ ] Custom layouts for Awesome
 
 # Requirements
 - Awesome
+- Fontawesome
 - MOC
 - xdotool
 - ffmpeg
