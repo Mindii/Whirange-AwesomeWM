@@ -1,0 +1,42 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+#-- Hdd Space Script for widgets
+#-- Mindi @ Mindinet.org
+#-- GNU General Public License v3.0
+#-------------------------------------------------------------------------------
+
+if [ "${1}" == "hdd1" ]; then
+	hdd_name="SSD"
+	hdd="$(df -h | grep "/dev/sda3" | tr -s " ")"
+	hdd_free="$(echo ${hdd} | cut -d" " -f4)"
+	hdd_size="$(echo ${hdd} | cut -d" " -f2)"
+	hdd_precent="$(echo ${hdd} | cut -d" " -f5)"
+elif [ "${1}" == "hdd2" ]; then
+	hdd_name="SSD2"
+	hdd="$(df -h | grep "/dev/sdc2" | tr -s " ")"
+	hdd_free="$(echo ${hdd} | cut -d" " -f4)"
+	hdd_size="$(echo ${hdd} | cut -d" " -f2)"
+	hdd_precent="$(echo ${hdd} | cut -d" " -f5)"
+elif [ "${1}" == "hdd3" ]; then
+	hdd_name="HDD"
+	hdd="$(df -h | grep "/dev/sdb2" | tr -s " ")"
+	hdd_free="$(echo ${hdd} | cut -d" " -f4)"
+	hdd_size="$(echo ${hdd} | cut -d" " -f2)"
+	hdd_precent="$(echo ${hdd} | cut -d" " -f5)"
+else
+	echo "hdd space script
+mindi @ Mindinet.org
+released under the GNU GPL v3.0
+
+Usage: hdd [OPTION]
+
+hdd1              First hdd info
+hdd2              Second hdd info
+hdd3              Third hdd info
+"
+fi
+
+if [ "${1}" != "" ]; then
+	sleep 0.2
+	echo " "${hdd_free}" "
+fi

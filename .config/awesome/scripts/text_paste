@@ -1,0 +1,20 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+#-- Text pastes to current window
+#-- Requirements: xdotool
+#-- Mindi @ Mindinet.org
+#-- GNU General Public License v3.0
+#-----------------------
+windowid=$(xdotool getwindowfocus)
+
+if [ "${1}" == "buy" ]; then
+	text="$(echo "Just buy it! - Tom's Hardware")"
+elif [ "${1}" == "btw" ]; then
+	text="$(echo "I use arch btw")"
+fi
+
+if [ "${1}" != "" ]; then
+	sleep 0.2
+	setxkbmap fi
+	xdotool windowactivate --sync $windowid type --clearmodifiers "${text}"
+fi

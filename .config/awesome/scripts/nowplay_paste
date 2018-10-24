@@ -27,8 +27,6 @@ if [ "${state}" == "PLAY" ]; then
 	info_v2="$(ffprobe "${fulltree}" 2>&1)"
 	date="($(echo "${info_v2}" | sed -E -n 's/^ *DATE *: (.*)/\1/p'))"
 	genre=", $(echo "${info_v2}" | sed -E -n 's/^ *GENRE *: (.*)/\1/p')" 
-	
-	echo $date
 
 	# Set Cover
 	if [ ! -e "${cover_exists}" ]; then
@@ -38,18 +36,6 @@ if [ "${state}" == "PLAY" ]; then
 		fi
 	fi
 	
-	# Check artist length
-	if [ "${#artist}" -gt "22" ]; then
-		artist="${artist:0:22}.."
-	fi
-	# Check song length
-	if [ "${#song}" -gt "22" ]; then
-		song="${song:0:22}.."
-	fi
-	# Check album length
-	if [ "${#album}" -gt "27" ]; then
-		album="${album:0:27}.."
-	fi
 	# Check if genre name is too short
 	if [ "${#genre}" -le "3" ]; then
 		genre=""
@@ -60,8 +46,8 @@ if [ "${state}" == "PLAY" ]; then
 	else
 		date=" $date"
 	fi
-
-
+	
+	#np_var=$1
 	np_string=".: $artist - ${song} (${time}) :: ${album}${date} :: ${bitrate}${genre} :."
 	# Filename fallback
 	if [ "$song" != "" ] && [ "$artist" != "" ]; then
@@ -71,6 +57,6 @@ if [ "${state}" == "PLAY" ]; then
 	else
 		sleep 0.5
 		setxkbmap fi
-		xdotool windowactivate --sync $windowid type "'${artist}'"
+		xdotool windowactivate --sync $windowid type "${file}"
 	fi
 fi

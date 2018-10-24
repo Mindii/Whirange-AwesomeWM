@@ -1,0 +1,19 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+#-- Weather script update - Downlaods new weather info
+#-- Mindi @ Mindinet.org
+#-- GNU General Public License v3.0
+#-------------------------------------------------------------------------------
+
+if [ "${1}" == "update" ]; then
+	wget -O /home/mindi/.config/awesome/scripts/db/weather http://wttr.in/Tampere\?m0QT
+else
+	echo "weather update script
+mindi @ Mindinet.org
+released under the GNU GPL v3.0
+
+Usage: weather_update [OPTION]
+
+update             Update weather db
+"
+fi

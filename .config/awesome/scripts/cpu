@@ -1,0 +1,36 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+#-- cpu usage script for widget
+#-- Mindi @ Mindinet.org
+#-- GNU General Public License v3.0
+#-------------------------------------------------------------------------------
+
+if [ "${1}" == "usage" ]; then
+	cpu="$(uptime | awk '{print $(NF-2)" "$(NF-1)" "$(NF-0)}')"
+	echo " "${cpu}" "
+elif [ "${1}" == "temp" ]; then
+	cpu_temp="$(sensors | grep -m 1 'temp3' | cut -c16-21)"
+	echo ${cpu_temp}
+elif [ "${1}" == "1m" ]; then
+	usage="$(uptime | awk '{print $(NF-1)}' | cut -c1-4)"
+	echo ${usage}
+elif [ "${1}" == "5m" ]; then
+	usage="$(uptime | awk '{print $(NF-2)}' | cut -c1-4)"
+	echo ${usage}
+elif [ "${1}" == "15m" ]; then
+	usage="$(uptime | awk '{print $(NF-0)}' | cut -c1-4)"
+	echo ${usage}
+else
+	echo "cpu usage script
+mindi @ Mindinet.org
+released under the GNU GPL v3.0
+
+Usage: cpu [OPTION]
+
+usage              Prints usage info
+temp               Prints temp info
+1m                 1M usage
+5m                 5M usage
+15m                15M usage
+"
+fi

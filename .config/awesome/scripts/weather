@@ -1,0 +1,35 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+#-- Weather script for widgets
+#-- Mindi @ Mindinet.org
+#-- GNU General Public License v3.0
+#-------------------------------------------------------------------------------
+if [ "${1}" != "" ]; then
+	db_folder="/home/mindi/.config/awesome/scripts/db/weather"
+	sky="$(awk 'NR==1' ${db_folder} | cut -c16-)"
+	temp="$(cat ${db_folder} | awk '/°(C)/ {print $(NF-1) $(NF)}')"
+	wind="$(cat ${db_folder} | awk '/(km)\/(h)/ {print $(NF-1)" "$(NF)}')"
+fi
+
+if [ "${temp}" != "" ]; then
+	if [ "${1}" == "temp" ]; then
+		echo " "${temp}" "
+	elif [ "${1}" == "wind" ]; then
+		echo ${wind}
+	elif [ "${1}" == "sky" ]; then
+		echo ${sky}
+	else
+		echo "weather script
+mindi @ Mindinet.org
+released under the GNU GPL v3.0
+
+Usage: weather [OPTION]
+
+temp               Prints temperature
+sky                Prints how sky looks like
+wind               Prints wind speed
+	"
+	fi
+else
+	echo " N/A "
+fi

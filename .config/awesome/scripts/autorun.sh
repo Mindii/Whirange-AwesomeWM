@@ -1,5 +1,4 @@
 #!/bin/sh
-
 #-------------------------------------------------------------------------------
 #-- Autorun for awesome
 #-- Mindi @ Mindinet.org
@@ -15,8 +14,8 @@ function run {
 
 sleep 0.1
 run nitrogen --restore &
-#run unagi &
-#run conky --config=/home/mindi/.config/conky/Conky.conf &
+run redshift &
 run unclutter -idle 10 &
+#run conky --config=/home/mindi/.config/conky/Conky.conf &
 sleep 0.1
 run waterfox &
