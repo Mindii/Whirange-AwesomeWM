@@ -35,6 +35,10 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 - xdotool
 - ffmpeg
 
+# Crontab
+0 */4 * * * /bin/bash /home/<user>/.config/awesome/scripts/weather_update update
+*/15 * * * *  /bin/bash /home/<user>/.config/awesome/scripts/events_update update
+
 # Key bindings
 `Mod` Win Key
 
