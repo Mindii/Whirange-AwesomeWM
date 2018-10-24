@@ -46,29 +46,29 @@ Mindi.Command = {}
 Mindi.Path = {}
 Mindi.Bar = {}
 -- Main	Vars
-Mindi.Mod = 				'Mod4' -- Mod key
-Mindi.Tags1 = 				{"一", "二", "三", "四", "五", "六", "七", "八", "九"}
-Mindi.Tags2 = 				{"一", "二", "三", "四"}
+Mindi.Mod =                 'Mod4' -- Mod key
+Mindi.Tags1 =               {"一", "二", "三", "四", "五", "六", "七", "八", "九"}
+Mindi.Tags2 =               {"一", "二", "三", "四"}
 -- Programs
-Mindi.Prog.Terminal = 		'urxvt'	-- Terminal command (Mod + Return)
-Mindi.Prog.FileManager = 	'thunar' -- Filemanager (Mod + E)
-Mindi.Prog.MusicPlayer = 	'mocp' -- Music	Player (Mod	+ M)
+Mindi.Prog.Terminal =       'urxvt'	-- Terminal command (Mod + Return)
+Mindi.Prog.FileManager =    'thunar' -- Filemanager (Mod + E)
+Mindi.Prog.MusicPlayer =    'mocp' -- Music	Player (Mod	+ M)
 -- Commands
-Mindi.Command.Screenshot = 	awful.util.getdir("config") .. 'scripts/screenshot.sh' -- Screenshot Command (Print + Click on window)
-Mindi.Command.Autostart = 	awful.util.getdir("config") .. 'scripts/autorun.sh' -- Autostart Script
-Mindi.Command.NPPaste = 	awful.util.getdir("config") .. 'scripts/nowplay_paste'
-Mindi.Command.Buy = 		awful.util.getdir("config") .. 'scripts/text_paste buy'
-Mindi.Command.Btw = 		awful.util.getdir("config") .. 'scripts/text_paste btw'
+Mindi.Command.Screenshot =  awful.util.getdir("config") .. 'scripts/screenshot.sh' -- Screenshot Command (Print + Click on window)
+Mindi.Command.Autostart =   awful.util.getdir("config") .. 'scripts/autorun.sh' -- Autostart Script
+Mindi.Command.NPPaste =     awful.util.getdir("config") .. 'scripts/nowplay_paste'
+Mindi.Command.Buy =         awful.util.getdir("config") .. 'scripts/text_paste buy'
+Mindi.Command.Btw =         awful.util.getdir("config") .. 'scripts/text_paste btw'
 -- Paths
-Mindi.Path.Icon = 			awful.util.getdir("config")	.. "/themes/whirange/icon/"
+Mindi.Path.Icon =           awful.util.getdir("config")	.. "/themes/whirange/icon/"
 -- Bar
-Mindi.Bar.Height = 			'16' -- Taskbar Height
-Mindi.Bar.BorderWidth = 	'2'
-Mindi.Bar.Clock = 			require("widgets.clock")	--	Taskbar	Clock
-Mindi.Bar.Cpu = 			require("widgets.cpu")
-Mindi.Bar.Mem = 			require("widgets.mem")
-Mindi.Bar.Hdd = 			require("widgets.hdd")
-Mindi.Bar.Weather = 		require("widgets.weather")
+Mindi.Bar.Height =          '16' -- Taskbar Height
+Mindi.Bar.BorderWidth =     '2'
+Mindi.Bar.Clock =           require("widgets.clock")	--	Taskbar	Clock
+Mindi.Bar.Cpu =             require("widgets.cpu")
+Mindi.Bar.Mem =             require("widgets.mem")
+Mindi.Bar.Hdd =             require("widgets.hdd")
+Mindi.Bar.Weather =         require("widgets.weather")
 
 -------------------------------------------------------------------------------
 -- Layout's
@@ -276,16 +276,16 @@ globalkeys = gears.table.join(
 	awful.key({}, "XF86AudioNext",       				function() awful.spawn('mocp --next') end),
 	awful.key({}, "XF86AudioPrev",       				function() awful.spawn('mocp --previous') end),
 	-- Other
-	awful.key({ Mindi.Mod, "Control" }, "j",			function() os.execute(Mindi.Command.Buy) end),
-	awful.key({ Mindi.Mod, "Control" }, "b",			function() os.execute(Mindi.Command.Btw) end)
+	awful.key({ Mindi.Mod, "Control" }, "j",    		function() os.execute(Mindi.Command.Buy) end),
+	awful.key({ Mindi.Mod, "Control" }, "b",    		function() os.execute(Mindi.Command.Btw) end)
 )
 
 clientkeys = gears.table.join(
-	awful.key({ Mindi.Mod,			}, "f", 			function (c) c.fullscreen	= not c.fullscreen c:raise() end),
-	awful.key({ Mindi.Mod,	"Shift"	}, "q", 			function (c) c:kill() end),
-	awful.key({ Mindi.Mod,	"Shift"	}, "space",			awful.client.floating.toggle),
-	awful.key({	Mindi.Mod,			}, "Tab", 			function () for c in awful.client.iterate(function (x) return	true end) do client.focus	= c client.focus:raise() end end),
-	awful.key({ Mindi.Mod,	"Shift"	}, "Tab", 			function () awful.client.focus.byidx(1) if client.focus then client.focus:raise() end end)
+	awful.key({ Mindi.Mod,			}, "f",     		function (c) c.fullscreen	= not c.fullscreen c:raise() end),
+	awful.key({ Mindi.Mod,	"Shift"	}, "q",     		function (c) c:kill() end),
+	awful.key({ Mindi.Mod,	"Shift"	}, "space", 		awful.client.floating.toggle),
+	awful.key({	Mindi.Mod,			}, "Tab",   		function () for c in awful.client.iterate(function (x) return	true end) do client.focus	= c client.focus:raise() end end),
+	awful.key({ Mindi.Mod,	"Shift"	}, "Tab",   		function () awful.client.focus.byidx(1) if client.focus then client.focus:raise() end end)
 )
 
 -- Bind	all	key	numbers	to tags.
