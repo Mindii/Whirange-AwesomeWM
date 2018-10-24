@@ -58,5 +58,6 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 - `Mod + z` Nowplaying string to current window
 
 # Screenshots
+![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1540401277_screen.png)
 ![alt tag](https://raw.githubusercontent.com/Mindii/Whirange-AwesomeWM/master/images/1535628857_screen.png)
 Moc + Notification
