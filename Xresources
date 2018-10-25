@@ -1,0 +1,60 @@
+URxvt.depth: 		32
+URxvt.scrollBar: 	false
+URxvt.urlLauncher: 	firefox
+
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755: False
+URxvt.perl-ext-common: default,clipboard
+URxvt.font: xft:lucy tewi:size=8
+
+! Colors
+*.background: 		[99]#ffffff
+*.borderColor: 		[99]#ffffff
+*.cursorColor: 		#ffa700
+*.foreground: 		#4f4f4f
+
+#URxvt.transparent: true
+#URxvt.blurRadius: 	5
+#URxvt.shading: 	1
+
+#URxvt.fading: 		1
+#URxvt.fadeColor: 	#fcfcfc
+#URxvt.tintColor: 	#fcfcfc
+
+! Border
+*.internalBorder: 	8
+*.externalBorder: 	0
+
+! Main Colors
+! ###########
+! black
+*.color0: 		#787878
+*.color8: 		#787878
+
+! red
+*.color1: 		#f07000
+*.color9: 		#f07000
+
+! green
+*.color2: 		#ffa700
+*.color10: 		#ffa700
+
+! yellow
+*.color3: 		#ffa700
+*.color11: 		#ffa700
+
+! blue
+*.color4: 		#ffc352
+*.color12: 		#ffc352
+
+! magenta
+*.color5: 		#4f4f4f
+*.color13: 		#4f4f4f
+
+! cyan
+*.color6: 		#ffa700
+*.color14: 		#ffa700
+
+! white
+*.color7: 		#4f4f4f
+*.color15: 		#4f4f4f
