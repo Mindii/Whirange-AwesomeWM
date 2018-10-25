@@ -4,15 +4,16 @@
 #-- Mindi @ Mindinet.org
 #-- GNU General Public License v3.0
 #-------------------------------------------------------------------------------
-if [ "${1}" != "" ]; then
+
+if [ "${1}" == "usage" ]; then
 	memory="$(free -h --si | grep "Mem:" | tr -s " ")"
 	mem_total="$(echo ${memory} | cut -d" " -f2)"
 	mem_used="$(echo ${memory} | cut -d" " -f3)"
-fi
-
-if [ "${1}" == "usage" ]; then
 	echo " "${mem_used}"/"${mem_total}" "
 elif [ "${1}" == "percent" ]; then
+	memory="$(free | grep "Mem:" | tr -s " ")"
+	mem_total="$(echo ${memory} | cut -d" " -f2)"
+	mem_used="$(echo ${memory} | cut -d" " -f3)"
 	mem_percent=$(awk "BEGIN { pc=100*${mem_used::-1}/${mem_total::-1}; i=int(pc); print (pc-i<0.5)?i:i+1 }")
 	echo ${mem_percent}
 else
