@@ -10,12 +10,12 @@ local beautiful	= require("beautiful")
 local textclock = {}
 
 function events()
-	local today = os.date(" %d ")
-	local todayb = os.date(" <b><span color='#FFA700'>%d</span></b> ")
+	local today = os.date(" %d "):gsub(" 0"," ")
+	local todayb = os.date("<b><span color='#FFA700'>" .. today .. "</span></b>")
 	local Calendar = io.popen("cal -m | sed -e 's/^/       /' -e 's/$/       /'")
 	local CalendarResult = Calendar:read("*a")
 	Calendar:close()
-	CalendarResult = string.gsub(CalendarResult,today,todayb)
+	local CalendarResult = string.gsub(CalendarResult,today,todayb)
 	
 
 	local NextEvents = io.popen("cat /home/mindi/.config/awesome/scripts/db/NextEvents.txt | sed -e '1s,^,<b>,' -e '1s,$,</b>,' |  sed -e '3s,^,<b>,' -e '3s,$,</b>,' |  sed -e '5s,^,<b>,' -e '5s,$,</b>,' |  sed -e '7s,^,<b>,' -e '7s,$,</b>,' |  sed -e '9s,^,<b>,' -e '9s,$,</b>,' |  sed -e '11s,^,<b>,' -e '11s,$,</b>,'")
