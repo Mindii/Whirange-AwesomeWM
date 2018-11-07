@@ -34,11 +34,16 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 - [ ] Custom layouts for Awesome
 
 # Requirements
-- Awesome
-- Fontawesome
-- MOC
-- xdotool
-- ffmpeg
+- [Awesome](https://www.archlinux.org/packages/community/x86_64/awesome/)
+- [MOC](http://moc.daper.net/)
+- [xdotool](https://www.archlinux.org/packages/community/x86_64/xdotool/)
+- [ffmpeg](https://www.archlinux.org/packages/extra/x86_64/ffmpeg/)
+- [Zsh](https://www.archlinux.org/packages/extra/x86_64/zsh/)
+- [Oh My Zsh](https://aur.archlinux.org/packages/oh-my-zsh-git/)
+
+- [Tewi](https://aur.archlinux.org/packages/bdf-tewi-git/)
+- [Fontawesome](https://www.archlinux.org/packages/community/any/awesome-terminal-fonts/)
+- [Han Sans](https://www.archlinux.org/packages/community/any/adobe-source-han-sans-jp-fonts/)
 
 # Crontab
 0 */4 * * * /bin/bash /home/USER/.config/awesome/scripts/weather_update update<br>
