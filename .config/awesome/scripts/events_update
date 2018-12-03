@@ -1,12 +1,12 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------
-#-- Memory usage script for widgets
+#-- Events update script
 #-- Mindi @ Mindinet.org
 #-- GNU General Public License v3.0
 #-------------------------------------------------------------------------------
 
 if [ "${1}" == "update" ]; then
-	/usr/bin/python3 /home/mindi/.config/awesome/scripts/Events.py
+	/usr/bin/python3 /home/mindi/.config/awesome/scripts/events.py
 else
 	echo "eventlist script
 mindi @ Mindinet.org
