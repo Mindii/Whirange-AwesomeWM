@@ -45,34 +45,44 @@ def DBWrite(e_date, e_name, e_type, e_link):
 
 # Print prev x event
 def Ended(mode="null",item="null"):
-	today = datetime.now().strftime("%Y-%m-%d")
-	eventdb.execute("SELECT * FROM events WHERE date < '%s' ORDER BY date" %(today))
+	today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+	eventdb.execute("SELECT * FROM events WHERE date <= '%s' ORDER BY date" %(today))
 	count = len(eventdb.fetchall())
-	eventdb.execute("SELECT * FROM events WHERE date < '%s' ORDER BY date" %(today))
+	#print(count)
+	eventdb.execute("SELECT * FROM events WHERE date <= '%s' ORDER BY date" %(today))
 	for i, event in enumerate(eventdb):
-		if mode == "Ended" and count-setup.endedcount+1 <= event[0] and count-item == i:
+		if mode == "Ended" and count-item == i:
 			return(event[2])
-		elif mode == "EndedType" and count-setup.endedcount+1 <= event[0] and count-item == i:
+		elif mode == "EndedType" and count-item == i:
 			return(event[3])
-		elif mode == "EndedLink" and count-setup.endedcount+1 <= event[0] and count-item == i:
+		elif mode == "EndedLink" and count-item == i:
 			return(event[4])
+
+#print(Ended("Ended",1))
+#print(Ended("Ended",2))
+#print(Ended("Ended",3))
+#print("-------------")
 
 # Print next x event
 def Next(mode="null",item="null"):
-	today = datetime.now().strftime("%Y-%m-%d")
-	eventdb.execute("SELECT * FROM events WHERE date > '%s' ORDER BY date ASC" %(today))
-	count = len(eventdb.fetchall())
-	eventdb.execute("SELECT * FROM events WHERE date > '%s' ORDER BY date ASC" %(today))
+	today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+	eventdb.execute("SELECT * FROM events WHERE date >= '%s' ORDER BY date ASC" %(today))
 	for i, event in enumerate(eventdb):
-		date = datetime.strptime(event[1], '%Y-%m-%d %H:%M:%S')
-		if mode == "Next" and setup.nextcount-1 <= event[0] and item-1 == i:
+		if mode == "Next" and item == i+1:
 			return(event[2])
-		elif mode == "NextTime" and setup.nextcount-1 <= event[0] and item-1 == i:
+		elif mode == "NextTime" and item == i+1:
+			date = datetime.strptime(event[1], '%Y-%m-%d %H:%M:%S')
 			return(Countdown(date))
-		elif mode == "NextType" and setup.nextcount-1 <= event[0] and item-1 == i:
+		elif mode == "NextType" and item == i+1:
 			return(event[3])
-		elif mode == "NextLink" and setup.nextcount-1 <= event[0] and item-1 == i:
+		elif mode == "NextLink" and item == i+1:
 			return(event[4])
+
+#print(Next("Next",1))
+#print(Next("Next",2))
+#print(Next("Next",3))
+#print(Next("Next",4))
+#print(Next("Next",5))
 
 # Empty temp files
 def ClearFiles(mode="null"):
