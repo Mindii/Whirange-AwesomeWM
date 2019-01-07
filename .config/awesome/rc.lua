@@ -45,7 +45,7 @@ Mindi.Prog = {}
 Mindi.Command = {}
 Mindi.Path = {}
 Mindi.Bar = {}
--- Main	Vars
+-- Main Vars
 Mindi.Mod =                 'Mod4' -- Mod key
 Mindi.Tags1 =               {"一", "二", "三", "四", "五", "六", "七", "八", "九"}
 Mindi.Tags2 =               {"一", "二", "三", "四"}
@@ -69,6 +69,10 @@ Mindi.Bar.Cpu =             require("widgets.cpu")
 Mindi.Bar.Mem =             require("widgets.mem")
 Mindi.Bar.Hdd =             require("widgets.hdd")
 Mindi.Bar.Weather =         require("widgets.weather")
+-- Bar Buttons
+Mindi.Bar.Redshift =         require("widgets.redshift")
+Mindi.Bar.Compton =         require("widgets.compton")
+Mindi.Bar.Mocp =             require("widgets.mocp")
 
 -------------------------------------------------------------------------------
 -- Layout's
@@ -226,6 +230,9 @@ awful.screen.connect_for_each_screen(function(s)
 			Mindi.Bar.Mem,
 			Mindi.Bar.Hdd,
 			Mindi.Bar.Weather,
+			Mindi.Bar.Mocp,
+			Mindi.Bar.Redshift,
+			Mindi.Bar.Compton,
 			Mindi.Bar.Clock,
 		},
 	}
@@ -249,7 +256,6 @@ root.buttons(gears.table.join(
 -------------------------------------------------------------------------------
 globalkeys = gears.table.join(
 	awful.key({ 					  }, "Print",   	function() os.execute(Mindi.Command.Screenshot) end),
-	awful.key({ Mindi.Mod,			  }, "r",       	function() awful.screen.focused().mypromptbox:run() end),
 	awful.key({ Mindi.Mod,			  }, "Return",  	function() awful.spawn(Mindi.Prog.Terminal) end),
 	awful.key({ Mindi.Mod,			  }, "e",       	function() awful.spawn(Mindi.Prog.FileManager) end),
 	awful.key({ Mindi.Mod,			  }, "d",       	function() menubar.show()	end),
