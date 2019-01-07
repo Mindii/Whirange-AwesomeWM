@@ -1,22 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 #-------------------------------------------------------------------------------
-#-- Autorun for awesome
+#-- Compton toggle on/off
 #-- Mindi @ Mindinet.org
 #-- GNU General Public License v3.0
 #-------------------------------------------------------------------------------
 
-function run {
-  if ! pgrep $1 ;
-  then
-    $@&
-  fi
-}
+process=$(pgrep -xf ${1})
 
-sleep 0.1
-run nitrogen --restore &
-run redshift &
-run compton &
-run unclutter -idle 8 &
-
-sleep 0.1
-run firefox &
+if [ "${process}" == "" ]; then
+	${1} &
+else
+	killall ${1} &
+fi
