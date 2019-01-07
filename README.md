@@ -35,6 +35,8 @@ These are my config files for [Awesome](https://awesomewm.org/) and other stuff.
 
 # Requirements
 - [Awesome](https://www.archlinux.org/packages/community/x86_64/awesome/)
+- [Redshift](https://www.archlinux.org/packages/community/x86_64/redshift/)
+- [Compton](https://www.archlinux.org/packages/community/x86_64/compton/)
 - [MOC](http://moc.daper.net/)
 - [xdotool](https://www.archlinux.org/packages/community/x86_64/xdotool/)
 - [ffmpeg](https://www.archlinux.org/packages/extra/x86_64/ffmpeg/)
