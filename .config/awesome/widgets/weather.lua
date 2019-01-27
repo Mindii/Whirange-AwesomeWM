@@ -11,7 +11,7 @@ local weather = {}
 
 local icon = '<span color="' .. beautiful.widget_icon_color .. '" font="fontawesome ' .. beautiful.widget_icon_size .. '"></span>'
 
-local weather = awful.widget.watch('sh /home/mindi/.config/awesome/scripts/weather temp', 60,
+local weather = awful.widget.watch('sh /home/mindi/.config/awesome/scripts/weather_simple temp', 60,
 	function(widget, stdout) 
 		widget:set_markup(" " .. icon .. stdout)
 end)
