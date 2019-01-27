@@ -18,11 +18,16 @@ theme.mindi_lightgray				= "#f3f3f3"
 theme.mindi_darkergray				= "#e4e4e4"
 theme.mindi_darkestgray				= "#aaaaaa"
 theme.mindi_urgent					= "#ffbaba"
+theme.mindi_white_transparent		= "#ffffff99"
 
 -- Widgets
-theme.widget_border_color 			= theme.mindi_darkergray
-theme.widget_clock_border_color 	= theme.mindi_darkestgray
+theme.widget_border_color 			= theme.mindi_white
+theme.widget_clock_border_color 	= theme.mindi_darkergray
+theme.widget_separator_color	 	= theme.mindi_darkergray
 theme.widget_icon_color				= theme.mindi_orange
+theme.widget_icon_off_color			= theme.mindi_lightgray
+theme.widget_progress_bg_color		= theme.mindi_white
+theme.widget_progress_border_color	= theme.mindi_darkergray
 theme.widget_progress_icon_color	= theme.mindi_darkergray
 theme.widget_icon_size				= dpi(8)
 
@@ -34,13 +39,13 @@ theme.bg_normal						= theme.mindi_white
 theme.bg_focus						= theme.mindi_orange
 theme.bg_urgent						= theme.mindi_urgent
 theme.bg_minimize					= theme.mindi_lightgray
-theme.bg_systray					= theme.bg_normal
+theme.bg_systray					= theme.mindi_white
 theme.fg_normal						= theme.mindi_black
 theme.fg_focus						= theme.mindi_white
 theme.fg_urgent						= theme.mindi_white
 theme.fg_minimize					= theme.mindi_white
 
-theme.useless_gap					= dpi(2)
+theme.useless_gap					= dpi(12)
 theme.border_width					= dpi(1)
 theme.border_normal					= theme.mindi_black
 theme.border_focus					= theme.mindi_orange
