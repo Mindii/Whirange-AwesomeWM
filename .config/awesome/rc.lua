@@ -62,23 +62,25 @@ Mindi.Command.Btw =         awful.util.getdir("config") .. 'scripts/text_paste b
 -- Paths
 Mindi.Path.Icon =           awful.util.getdir("config")	.. "/themes/whirange/icon/"
 -- Bar
-Mindi.Bar.Height =          '16' -- Taskbar Height
+Mindi.Bar.Height1 =         '16' -- Taskbar monitor 1 height
+--Mindi.Bar.Width1 =          '97%' -- Taskbar monitor 1 Width
+Mindi.Bar.Height2 =         '16' -- Taskbar monitor 2 Height
+--Mindi.Bar.Width2 =          '80%' -- Taskbar monitor 2 Width
 Mindi.Bar.BorderWidth =     '2'
 Mindi.Bar.Clock =           require("widgets.clock")	--	Taskbar	Clock
-Mindi.Bar.Cpu =             require("widgets.cpu")
+Mindi.Bar.Cpu =             require("widgets.cpu_v2")
 Mindi.Bar.Mem =             require("widgets.mem")
 Mindi.Bar.Hdd =             require("widgets.hdd")
 Mindi.Bar.Weather =         require("widgets.weather")
+Mindi.Bar.Separator =       require("widgets.separator")
 -- Bar Buttons
-Mindi.Bar.Redshift =         require("widgets.redshift")
-Mindi.Bar.Compton =         require("widgets.compton")
-Mindi.Bar.Mocp =             require("widgets.mocp")
+Mindi.Bar.Toggles =         require("widgets.toggles")
 
 -------------------------------------------------------------------------------
 -- Layout's
 -------------------------------------------------------------------------------
 awful.layout.layouts = {
-	awful.layout.suit.spiral.dwindle,
+	awful.layout.suit.spiral,
 	awful.layout.suit.floating,
 	--	awful.layout.suit.tile,
 	--	awful.layout.suit.tile.left,
@@ -157,23 +159,7 @@ local tasklist_buttons = gears.table.join(
 											  awful.client.focus.byidx(-1)
 										  end))
 
-local function set_wallpaper(s)
-	--	Wallpaper
-	if	beautiful.wallpaper	then
-		local	wallpaper =	beautiful.wallpaper
-		if type(wallpaper) ==	"function" then
-			wallpaper = wallpaper(s)
-		end
-		gears.wallpaper.maximized(wallpaper, s, true)
-	end
-end
-
--- Re-set wallpaper	when a screen's	geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry",	set_wallpaper)
-
 awful.screen.connect_for_each_screen(function(s)
-	set_wallpaper(s)
-
 	tags = {}
 	-- If primary screen then add tags from Mindi.Tag1 var
 	if s == screen.primary then
@@ -209,38 +195,64 @@ awful.screen.connect_for_each_screen(function(s)
 	--	Create a tasklist widget
 	s.mytasklist =	awful.widget.tasklist(s, awful.widget.tasklist.filter.minimizedcurrenttags, tasklist_buttons)
 
-	--	Create the wibox
-	s.mywibox = awful.wibar({ position	= "top", screen	= s, height	= Mindi.Bar.Height, border_width = Mindi.Bar.BorderWidth, border_color = beautiful.bg_normal })
+	if s == screen.primary then
+	--	Monitor 1 Bar :: width	= Mindi.Bar.Width1
+	s.mywibox = awful.wibar({ position	= "top", screen	= s, height	= Mindi.Bar.Height1, border_width = Mindi.Bar.BorderWidth, border_color = beautiful.bg_normal })
 
 	--	Add	widgets	to the wibox
 	s.mywibox:setup {
+		expand="none",
 		layout = wibox.layout.align.horizontal,
 		{	-- Left	widgets
-			layout =	wibox.layout.fixed.horizontal,
+			layout = wibox.layout.fixed.horizontal,
 			s.mytaglist,
+			s.mytasklist,
 		},
 		{	-- Middle widgets
 			layout = wibox.layout.fixed.horizontal,
-			s.mytasklist,
+			spacing = 4,
 		},
 		{	-- Right widgets
 			layout = wibox.layout.fixed.horizontal,
-			spacing = 2,
-			Mindi.Bar.Cpu,
-			Mindi.Bar.Mem,
-			Mindi.Bar.Hdd,
-			Mindi.Bar.Weather,
-			Mindi.Bar.Mocp,
-			Mindi.Bar.Redshift,
-			Mindi.Bar.Compton,
+			spacing = 4,
+			Mindi.Bar.Toggles,
 			Mindi.Bar.Clock,
 		},
-	}
+     }
+	else
+	--	Monitor 2 Bar :: width	= Mindi.Bar.Width2
+	s.mywibox2 = awful.wibar({position	= "top", screen	= s, height	= Mindi.Bar.Height2, border_width = Mindi.Bar.BorderWidth, border_color = beautiful.bg_normal })
+
+	--	Add	widgets	to the wibox
+	s.mywibox2:setup {
+		expand="none",
+		layout = wibox.layout.align.horizontal,
+		{	-- Left	widgets
+			layout = wibox.layout.fixed.horizontal,
+			s.mytaglist,
+			s.mytasklist,
+		},
+		{	-- Middle widgets
+			layout = wibox.layout.fixed.horizontal,
+			spacing = 4,
+		},
+		{	-- Right widgets
+			layout = wibox.layout.fixed.horizontal,
+			spacing = 4,
+			Mindi.Bar.Cpu,
+			Mindi.Bar.Separator,
+			Mindi.Bar.Mem,
+			Mindi.Bar.Separator,
+			Mindi.Bar.Hdd,
+			Mindi.Bar.Separator,
+			Mindi.Bar.Weather,
+			Mindi.Bar.Separator,
+			Mindi.Bar.Toggles,
+			Mindi.Bar.Clock,
+		},
+     }                                
+	end
 end)
-	
--------------------------------------------------------------------------------
--- Functions
--------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------
 -- Mouse Bindings
@@ -358,7 +370,6 @@ root.keys(globalkeys)
 -------------------------------------------------------------------------------
 -- Rules
 -------------------------------------------------------------------------------
--- Rules to	apply to new clients (through the "manage" signal).
 awful.rules.rules =	{
 	{ rule	= {	},
 	  properties =	{ border_width = beautiful.border_width,
@@ -371,21 +382,45 @@ awful.rules.rules =	{
 					 placement	= awful.placement.no_overlap+awful.placement.no_offscreen
 	 }
 	},
-	--	Floating clients.
-	{ rule_any	= {
-		instance = {
-		  "RuleName",
-		},
-		class	= {
-		  "RuleName"
-		},
-		name = {
-		  "RuleName",
-		},
-		role = {
-		  "pop-up",
-		}
-	  }, properties = { floating =	true }},
+	
+-- Lutris / Battle.net
+	{ rule_any = {
+	class = {
+		"battle.net.exe",
+		"Lutris",
+	},
+}, properties = { floating = true, screen = 1, tag = "四" } },
+
+-- Steam
+	{ rule_any = {
+	class = {
+		"Steam",
+	},
+}, properties = { floating = true, screen = 1, tag = "五"} },
+	
+-- Chat
+	{ rule_any = {
+	name = {
+		"chat",
+		"Friends List",
+	},
+}, properties = { floating = false, screen = 1, tag = "六" } },
+
+-- MPV Player
+	{ rule_any = {
+	class = {
+		"mpv",
+	},
+}, properties = { floating = true, screen = 2, tag = "一", height = 720, placement = "centered"  } },
+-- properties = { floating = true, screen = 2, tag = "一", height = 720, placement = "centered"  } },
+-- Float Stuff
+	{ rule_any = {
+	class = {
+		"Nitrogen",
+	},
+}, properties = { floating = true } },
+	
+-- The End	
 }
 
 -- Signal function to execute when a new client	appears.
@@ -404,6 +439,16 @@ client.connect_signal("mouse::enter", function(c)
 		client.focus = c
 	end
 end)
+
+-- Round window corners
+client.connect_signal("manage", function (c, startup)
+    -- Enable round corners with the shape api
+    c.shape = function(cr,w,h)
+        gears.shape.rounded_rect(cr,w,h,4)
+		--gears.shape.partially_rounded_rect(cr, w, h, false, false, true, true, 16)
+    end
+end)
+
 
 client.connect_signal("focus", function(c) c.border_color =	beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color	= beautiful.border_normal end)
