@@ -8,6 +8,9 @@
 if [ "${1}" == "usage" ]; then
 	cpu="$(uptime | awk '{print $(NF-2)" "$(NF-1)" "$(NF-0)}')"
 	echo " "${cpu}" "
+elif [ "${1}" == "percent" ]; then
+	cpu_percent="$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}')"
+	echo ${cpu_percent}
 elif [ "${1}" == "temp" ]; then
 	cpu_temp="$(sensors | grep -m 1 'temp3' | cut -c16-21)"
 	echo ${cpu_temp}
@@ -29,6 +32,7 @@ Usage: cpu [OPTION]
 
 usage              Prints usage info
 temp               Prints temp info
+percent            Print usage in percent
 1m                 1M usage
 5m                 5M usage
 15m                15M usage

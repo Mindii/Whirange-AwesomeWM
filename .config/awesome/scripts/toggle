@@ -1,6 +1,6 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------
-#-- Compton toggle on/off
+#-- Process toggle on/off
 #-- Mindi @ Mindinet.org
 #-- GNU General Public License v3.0
 #-------------------------------------------------------------------------------
@@ -9,6 +9,10 @@ process=$(pgrep -xf ${1})
 
 if [ "${process}" == "" ]; then
 	${1} &
+	icon=""${HOME}"/.config/awesome/themes/whirange/icon/icon_on_${1}.png"
+	echo 'require("naughty").notify({ title="'${1}'", text="Enabled", icon="'${icon}'"})' | awesome-client
 else
 	killall ${1} &
+	icon=""${HOME}"/.config/awesome/themes/whirange/icon/icon_off_${1}.png"
+	echo 'require("naughty").notify({ title="'${1}'", text="Disabled", icon="'${icon}'"})' | awesome-client
 fi

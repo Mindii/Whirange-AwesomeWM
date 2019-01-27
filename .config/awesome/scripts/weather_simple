@@ -1,0 +1,27 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+#-- Weather script for widgets
+#-- Mindi @ Mindinet.org
+#-- GNU General Public License v3.0
+#-------------------------------------------------------------------------------
+if [ "${1}" != "" ]; then
+	db_folder="/home/mindi/.config/awesome/scripts/db/weather"
+	temp="$(cat ${db_folder} | awk 'NF>1{print $NF}')"
+fi
+
+if [ "${temp}" != "" ]; then
+	if [ "${1}" == "temp" ]; then
+		echo " "${temp}" "
+	else
+		echo "weather script
+mindi @ Mindinet.org
+released under the GNU GPL v3.0
+
+Usage: weather [OPTION]
+
+temp               Prints temperature
+	"
+	fi
+else
+	echo " N/A "
+fi
